@@ -1,0 +1,2 @@
+0;Jammed;1;0
+1;Not_Jammed;0;1

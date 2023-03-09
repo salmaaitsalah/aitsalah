@@ -1,0 +1,82 @@
+\hypertarget{_p_d_f_generator_8py}{}\doxysection{util/\+PDFGenerator.py File Reference}
+\label{_p_d_f_generator_8py}\index{util/PDFGenerator.py@{util/PDFGenerator.py}}
+
+
+File where everything related to the pdf generation is defined.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_p_d_f_generator_1_1_p_d_f_generator_var}{PDFGenerator.\+PDFGenerator\+Var}}
+\begin{DoxyCompactList}\small\item\em Initialization of \mbox{\hyperlink{class_p_d_f_generator_1_1_p_d_f_generator_var}{PDFGenerator\+Var}} class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_p_d_f_generator_1_1_p_d_f_generator}{PDFGenerator.\+PDFGenerator}}
+\begin{DoxyCompactList}\small\item\em Initialization of the \mbox{\hyperlink{class_p_d_f_generator_1_1_p_d_f_generator}{PDFGenerator}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{_p_d_f_generator_8py_a060db3cdd75d82bcdf8fcde5aef6049c}{PDFGenerator.\+Generate\+PDF}} (self, generator\+\_\+var, df\+\_\+acc, df\+\_\+rcl, df\+\_\+rcl\+\_\+eval, list\+\_\+df\+\_\+node\+\_\+info, df\+\_\+value, global\+\_\+performance)
+\begin{DoxyCompactList}\small\item\em Method that add all the element in the flowables list (using privates methods) and then build the PDF File using all the elements in the flowables list. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{_p_d_f_generator_8py_ad33e6e00dbc67dc96051837e04d9479e}{PDFGenerator.\+generate\+PDF}} (generator\+\_\+var, dict\+\_\+value, global\+\_\+performance, name)
+\begin{DoxyCompactList}\small\item\em public method that allows us to generate the PDF \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+File where everything related to the pdf generation is defined. 
+
+In this file, we define PDFGenerator, the class that allows us to generate a PDF Report of the simulation. We also define PDFGenerator\+Var, a struct class that regroup all variable needed to generate the PDF Report. \begin{DoxyAuthor}{Author}
+\+: Romain Durieux and Nathan Trouillet (2022) 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_p_d_f_generator_8py_ad33e6e00dbc67dc96051837e04d9479e}\label{_p_d_f_generator_8py_ad33e6e00dbc67dc96051837e04d9479e}} 
+\index{PDFGenerator.py@{PDFGenerator.py}!generatePDF@{generatePDF}}
+\index{generatePDF@{generatePDF}!PDFGenerator.py@{PDFGenerator.py}}
+\doxysubsubsection{\texorpdfstring{generatePDF()}{generatePDF()}}
+{\footnotesize\ttfamily def PDFGenerator.\+generate\+PDF (\begin{DoxyParamCaption}\item[{}]{generator\+\_\+var,  }\item[{}]{dict\+\_\+value,  }\item[{}]{global\+\_\+performance,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+public method that allows us to generate the PDF 
+
+~\newline
+ 
+\begin{DoxyParams}{Parameters}
+{\em PDFGenerator\+Var} & generator\+\_\+var\+: Object containing all the needed variable for the PDF Generation \\
+\hline
+{\em dict} & dict\+\_\+value\+: Dictionnary of the values relatives to the resumed performance of each nodes \\
+\hline
+{\em float} & global\+\_\+performance\+: global performance value \\
+\hline
+{\em string} & mode \+: QOS computation mode selecteds ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_p_d_f_generator_8py_a060db3cdd75d82bcdf8fcde5aef6049c}\label{_p_d_f_generator_8py_a060db3cdd75d82bcdf8fcde5aef6049c}} 
+\index{PDFGenerator.py@{PDFGenerator.py}!GeneratePDF@{GeneratePDF}}
+\index{GeneratePDF@{GeneratePDF}!PDFGenerator.py@{PDFGenerator.py}}
+\doxysubsubsection{\texorpdfstring{GeneratePDF()}{GeneratePDF()}}
+{\footnotesize\ttfamily def PDFGenerator.\+Generate\+PDF (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{generator\+\_\+var,  }\item[{}]{df\+\_\+acc,  }\item[{}]{df\+\_\+rcl,  }\item[{}]{df\+\_\+rcl\+\_\+eval,  }\item[{}]{list\+\_\+df\+\_\+node\+\_\+info,  }\item[{}]{df\+\_\+value,  }\item[{}]{global\+\_\+performance }\end{DoxyParamCaption})}
+
+
+
+Method that add all the element in the flowables list (using privates methods) and then build the PDF File using all the elements in the flowables list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em PDFGenerator\+Var} & generator\+\_\+var\+: Object containing all the needed variable for the PDF Generation \\
+\hline
+{\em Data\+Frame} & df\+\_\+acc\+: Dataframe of the final accuracy for each node \\
+\hline
+{\em Data\+Frame} & df\+\_\+rcl \+: Dataframe of the final recal value using the label for each node \\
+\hline
+{\em Data\+Frame} & df\+\_\+rcl\+\_\+eval \+: Dataframe of the final recal value using the evaluation for each node \\
+\hline
+{\em list} & list\+\_\+df\+\_\+node\+\_\+info\+: List containing all the data from each node in a dataframe (one per node) \\
+\hline
+{\em Data\+Frame} & df\+\_\+value\+: Dataframe of the values relatives to the resumed performance of each nodes \\
+\hline
+{\em float} & global\+\_\+performance\+: Global performance value (between 0 and 1) \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,197 @@
+\hypertarget{_view_8py}{}\doxysection{util/\+View.py File Reference}
+\label{_view_8py}\index{util/View.py@{util/View.py}}
+
+
+file that regroup all the methods relating to View and Save differents plots  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_view_8py_ae7b367b5bc5fdf800a680fa7db49af7e}\label{_view_8py_ae7b367b5bc5fdf800a680fa7db49af7e}} 
+def {\bfseries View.\+plot\+Density} (i, algo, d, a)
+\item 
+\mbox{\Hypertarget{_view_8py_a4a0b18d5180c43e5e73e608ba168ac4d}\label{_view_8py_a4a0b18d5180c43e5e73e608ba168ac4d}} 
+def {\bfseries View.\+view\+Density} (nb\+Arms, algo, d, name\+Dataset, view\+All, a)
+\item 
+def \mbox{\hyperlink{_view_8py_a3d27d7b672ed197cde02d5a6f1677b28}{View.\+view\+Graphic}} (x\+Tab, y\+Tab, z\+Tab, metric, graphic\+Title, dim)
+\begin{DoxyCompactList}\small\item\em Method that plot and show a 2D graph. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{_view_8py_af22d2c6c9437c847893ac8e6a21eb915}{View.\+save\+Graphic}} (x\+Tab, y\+Tab, z\+Tab, metric, graphic\+Title, dim)
+\begin{DoxyCompactList}\small\item\em Method that plot and save a 2D graph. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{_view_8py_a39d90e2337e2465835af7d197f03c308}{View.\+display\+Round}} (i)
+\begin{DoxyCompactList}\small\item\em method that print the current round at each 100 round \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_view_8py_a3a30e42298067325a646edc25f8c6ff4}\label{_view_8py_a3a30e42298067325a646edc25f8c6ff4}} 
+def {\bfseries View.\+display\+Data\+Informations} (nb\+Arms, nb\+Contexts, nb\+Pred, d\+Contexts, horizon)
+\item 
+\mbox{\Hypertarget{_view_8py_a22be841e24d30da8890ee076352ecbb8}\label{_view_8py_a22be841e24d30da8890ee076352ecbb8}} 
+def {\bfseries View.\+display\+Algorithm\+Informations} (algo\+Name, algo)
+\item 
+\mbox{\Hypertarget{_view_8py_a48d7901e4ff182eedc08a516925066fb}\label{_view_8py_a48d7901e4ff182eedc08a516925066fb}} 
+def {\bfseries View.\+dynamic\+View} (display, i, metric)
+\item 
+\mbox{\Hypertarget{_view_8py_a6df6feddac6911edd304884f42c63f37}\label{_view_8py_a6df6feddac6911edd304884f42c63f37}} 
+def {\bfseries View.\+figure} (horizon, name\+Algo, name\+Data, xl, yl, tl)
+\item 
+\mbox{\Hypertarget{_view_8py_a39f9677636a7b3b35f43d9283514d9ff}\label{_view_8py_a39f9677636a7b3b35f43d9283514d9ff}} 
+def {\bfseries View.\+plot3D} (x, y, z, la)
+\item 
+def \mbox{\hyperlink{_view_8py_a2cc64377fdfbe3a7354ce805d1c81825}{View.\+create\+Confusion\+Matrix}} (title, expected, predicted)
+\begin{DoxyCompactList}\small\item\em method that create the confusion matrix \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{_view_8py_a2eac969821da969b56f907d33dcde18d}{View.\+show\+Confusion\+Matrix}} (title, expected, predicted)
+\begin{DoxyCompactList}\small\item\em method that show the confusion matrix \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{_view_8py_a5685cd57eebc67c85e7e19a9128f538c}{View.\+save\+Confusion\+Matrix}} (title, expected, predicted)
+\begin{DoxyCompactList}\small\item\em method that save the confusion matrix \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_view_8py_a323c8e735a232f35fee35d64812bb074}\label{_view_8py_a323c8e735a232f35fee35d64812bb074}} 
+def {\bfseries View.\+name\+Processing} (name\+Algorithm)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+file that regroup all the methods relating to View and Save differents plots 
+
+\begin{DoxyAuthor}{Author}
+Romain Durieux and Nathan Trouillet (2022), using the work of gutowski (2019) 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_view_8py_a2cc64377fdfbe3a7354ce805d1c81825}\label{_view_8py_a2cc64377fdfbe3a7354ce805d1c81825}} 
+\index{View.py@{View.py}!createConfusionMatrix@{createConfusionMatrix}}
+\index{createConfusionMatrix@{createConfusionMatrix}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{createConfusionMatrix()}{createConfusionMatrix()}}
+{\footnotesize\ttfamily def View.\+create\+Confusion\+Matrix (\begin{DoxyParamCaption}\item[{}]{title,  }\item[{}]{expected,  }\item[{}]{predicted }\end{DoxyParamCaption})}
+
+
+
+method that create the confusion matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & title of the plot \\
+\hline
+{\em expected} & list containing the expected binary value of the confusion matrix \\
+\hline
+{\em predicted} & list containing the predicted binary value of the confusion matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+plt the generated plot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_view_8py_a39d90e2337e2465835af7d197f03c308}\label{_view_8py_a39d90e2337e2465835af7d197f03c308}} 
+\index{View.py@{View.py}!displayRound@{displayRound}}
+\index{displayRound@{displayRound}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{displayRound()}{displayRound()}}
+{\footnotesize\ttfamily def View.\+display\+Round (\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})}
+
+
+
+method that print the current round at each 100 round 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & current round \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_view_8py_a5685cd57eebc67c85e7e19a9128f538c}\label{_view_8py_a5685cd57eebc67c85e7e19a9128f538c}} 
+\index{View.py@{View.py}!saveConfusionMatrix@{saveConfusionMatrix}}
+\index{saveConfusionMatrix@{saveConfusionMatrix}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{saveConfusionMatrix()}{saveConfusionMatrix()}}
+{\footnotesize\ttfamily def View.\+save\+Confusion\+Matrix (\begin{DoxyParamCaption}\item[{}]{title,  }\item[{}]{expected,  }\item[{}]{predicted }\end{DoxyParamCaption})}
+
+
+
+method that save the confusion matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & title of the plot \\
+\hline
+{\em expected} & list containing the expected binary value of the confusion matrix \\
+\hline
+{\em predicted} & list containing the predicted binary value of the confusion matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_view_8py_af22d2c6c9437c847893ac8e6a21eb915}\label{_view_8py_af22d2c6c9437c847893ac8e6a21eb915}} 
+\index{View.py@{View.py}!saveGraphic@{saveGraphic}}
+\index{saveGraphic@{saveGraphic}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{saveGraphic()}{saveGraphic()}}
+{\footnotesize\ttfamily def View.\+save\+Graphic (\begin{DoxyParamCaption}\item[{}]{x\+Tab,  }\item[{}]{y\+Tab,  }\item[{}]{z\+Tab,  }\item[{}]{metric,  }\item[{}]{graphic\+Title,  }\item[{}]{dim }\end{DoxyParamCaption})}
+
+
+
+Method that plot and save a 2D graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Tab} & x values \\
+\hline
+{\em y\+Tab} & y values \\
+\hline
+{\em z\+Tab} & z values (not used) \\
+\hline
+{\em metric} & metric of the graph \\
+\hline
+{\em graphic\+Title} & title of the graph \\
+\hline
+{\em dim} & dimension of the graph (not used) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_view_8py_a2eac969821da969b56f907d33dcde18d}\label{_view_8py_a2eac969821da969b56f907d33dcde18d}} 
+\index{View.py@{View.py}!showConfusionMatrix@{showConfusionMatrix}}
+\index{showConfusionMatrix@{showConfusionMatrix}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{showConfusionMatrix()}{showConfusionMatrix()}}
+{\footnotesize\ttfamily def View.\+show\+Confusion\+Matrix (\begin{DoxyParamCaption}\item[{}]{title,  }\item[{}]{expected,  }\item[{}]{predicted }\end{DoxyParamCaption})}
+
+
+
+method that show the confusion matrix 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & title of the plot \\
+\hline
+{\em expected} & list containing the expected binary value of the confusion matrix \\
+\hline
+{\em predicted} & list containing the predicted binary value of the confusion matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{_view_8py_a3d27d7b672ed197cde02d5a6f1677b28}\label{_view_8py_a3d27d7b672ed197cde02d5a6f1677b28}} 
+\index{View.py@{View.py}!viewGraphic@{viewGraphic}}
+\index{viewGraphic@{viewGraphic}!View.py@{View.py}}
+\doxysubsubsection{\texorpdfstring{viewGraphic()}{viewGraphic()}}
+{\footnotesize\ttfamily def View.\+view\+Graphic (\begin{DoxyParamCaption}\item[{}]{x\+Tab,  }\item[{}]{y\+Tab,  }\item[{}]{z\+Tab,  }\item[{}]{metric,  }\item[{}]{graphic\+Title,  }\item[{}]{dim }\end{DoxyParamCaption})}
+
+
+
+Method that plot and show a 2D graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Tab} & x values \\
+\hline
+{\em y\+Tab} & y values \\
+\hline
+{\em z\+Tab} & z values (not used) \\
+\hline
+{\em metric} & metric of the graph \\
+\hline
+{\em graphic\+Title} & title of the graph \\
+\hline
+{\em dim} & dimension of the graph (not used) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}

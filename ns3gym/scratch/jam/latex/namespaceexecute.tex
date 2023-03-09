@@ -1,0 +1,261 @@
+\hypertarget{namespaceexecute}{}\doxysection{execute Namespace Reference}
+\label{namespaceexecute}\index{execute@{execute}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaceexecute_a127f67db07549ff14f94851ad43fb941}{init\+\_\+execute}} (node, args, live=True, m1=None)
+\begin{DoxyCompactList}\small\item\em Initialization of the execute method. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_aa6acfbe14f821ae8d07939bed196b341}{execute}} (node, args, q, live=True, m=None)
+\begin{DoxyCompactList}\small\item\em Method which run the training algorithm. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a9d79a08b6f313a0a2c86b4f67d356ec3}{save\+\_\+node\+\_\+data}} (dict\+\_\+graph\+\_\+list, node)
+\begin{DoxyCompactList}\small\item\em Method which save the dict\+\_\+graph\+\_\+list dictionnary in a csv format. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a842e47b05b3101fe0c371530f71ea052}{compute\+\_\+performance\+\_\+values}} (dict\+\_\+conf\+\_\+matrix, dict\+\_\+graph\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Method which compute the performance values using the data from the dictionnaries dict\+\_\+conf\+\_\+matrix and dict\+\_\+graph\+\_\+list. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a129b87951d61343b40428315a32ab2be}{retrieve\+\_\+training\+\_\+values}} (dict\+\_\+graph\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Method which retrieve the final accuracy, recall using the label and recall using the evaluation value. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a426a0c84f1c49f4b4266bc20295e86d3}{save\+\_\+images}} (dict\+\_\+graph\+\_\+list, node)
+\begin{DoxyCompactList}\small\item\em Method which save all the needed graph for the PDF Report. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_afa3159d059466c48082b73f427ea344f}{run}} (m, algo, store\+\_\+data, dict\+\_\+process\+\_\+value, dict\+\_\+graph\+\_\+list, dict\+\_\+conf\+\_\+matrix, TP\+\_\+bool, live, linker)
+\begin{DoxyCompactList}\small\item\em Method which run one round of the training algorithm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespaceexecute_a43052e69c82c31ca98c2b0daa806277c}\label{namespaceexecute_a43052e69c82c31ca98c2b0daa806277c}} 
+def {\bfseries reset\+Plot\+Img} ()
+\begin{DoxyCompactList}\small\item\em Method which remove all the existing images in the plot directory. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a4d55c40d0823d8569698d5532d8de99e}{find\+Global\+Best}} (global\+\_\+performance)
+\begin{DoxyCompactList}\small\item\em Method which update the best.\+csv file depending of the global performance. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_af5f59b59b0d2043355dacdb480c42b3e}{find\+Mode\+Best}} (global\+\_\+performance, mode)
+\begin{DoxyCompactList}\small\item\em Method which update the best\+\_\+\{mode\}.csv file depending of the global performance. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespaceexecute_a6f92a48a9322174cf203555702690929}{remove\+Report}} (name, mode)
+\begin{DoxyCompactList}\small\item\em Method which remove the reports that aren\textquotesingle{}t on the best.\+csv nor the best\+\_\+\{mode\}.csv file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@author: Romain Durieux and Nathan Trouillet (2022), using the work of gutowski (2019)
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceexecute_a842e47b05b3101fe0c371530f71ea052}\label{namespaceexecute_a842e47b05b3101fe0c371530f71ea052}} 
+\index{execute@{execute}!compute\_performance\_values@{compute\_performance\_values}}
+\index{compute\_performance\_values@{compute\_performance\_values}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{compute\_performance\_values()}{compute\_performance\_values()}}
+{\footnotesize\ttfamily def execute.\+compute\+\_\+performance\+\_\+values (\begin{DoxyParamCaption}\item[{}]{dict\+\_\+conf\+\_\+matrix,  }\item[{}]{dict\+\_\+graph\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Method which compute the performance values using the data from the dictionnaries dict\+\_\+conf\+\_\+matrix and dict\+\_\+graph\+\_\+list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dict} & dict\+\_\+conf\+\_\+matrix\+: Dictionnary for all the values relative to the Confusion Matrix \\
+\hline
+{\em dict} & dict\+\_\+graph\+\_\+list\+: Dictionnary for all the values used to generate all the graphs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+v\+\_\+specificity specificity value \+: TN/(TN+\+FP) 
+
+v\+\_\+precision precision value \+: TP/(TP+\+FP) 
+
+v\+\_\+performance performance value \+: (v\+\_\+specificity + v\+\_\+precision + last recall value)/3 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceexecute_aa6acfbe14f821ae8d07939bed196b341}\label{namespaceexecute_aa6acfbe14f821ae8d07939bed196b341}} 
+\index{execute@{execute}!execute@{execute}}
+\index{execute@{execute}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily def execute.\+execute (\begin{DoxyParamCaption}\item[{}]{node,  }\item[{}]{args,  }\item[{}]{q,  }\item[{}]{live = {\ttfamily True},  }\item[{}]{m = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Method which run the training algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & node\+: the node id \\
+\hline
+{\em Namespace} & args\+: the args\+Parser object from the main \\
+\hline
+{\em boolean} & live \+: the parameter that define if the pretrain phase is activated or not, True by default \\
+\hline
+{\em Queue} & q \+: queue used to return object to the parent process \\
+\hline
+{\em Model} & m \+: the model used for the execute method, None by default \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceexecute_a4d55c40d0823d8569698d5532d8de99e}\label{namespaceexecute_a4d55c40d0823d8569698d5532d8de99e}} 
+\index{execute@{execute}!findGlobalBest@{findGlobalBest}}
+\index{findGlobalBest@{findGlobalBest}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{findGlobalBest()}{findGlobalBest()}}
+{\footnotesize\ttfamily def execute.\+find\+Global\+Best (\begin{DoxyParamCaption}\item[{}]{global\+\_\+performance }\end{DoxyParamCaption})}
+
+
+
+Method which update the best.\+csv file depending of the global performance. 
+
+Method which update the best.\+csv file depending of the global performance. If the global performance is higher than the smallest value in the best.\+csv file, the smallest value and its corresponding report path is replaced by the current global performance value and its corresponding report path. 
+\begin{DoxyParams}{Parameters}
+{\em float} & global\+\_\+performance\+: Global performance value \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceexecute_af5f59b59b0d2043355dacdb480c42b3e}\label{namespaceexecute_af5f59b59b0d2043355dacdb480c42b3e}} 
+\index{execute@{execute}!findModeBest@{findModeBest}}
+\index{findModeBest@{findModeBest}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{findModeBest()}{findModeBest()}}
+{\footnotesize\ttfamily def execute.\+find\+Mode\+Best (\begin{DoxyParamCaption}\item[{}]{global\+\_\+performance,  }\item[{}]{mode }\end{DoxyParamCaption})}
+
+
+
+Method which update the best\+\_\+\{mode\}.csv file depending of the global performance. 
+
+Method which update the best\+\_\+\{mode\}.csv file depending of the global performance. If the global performance is higher than the smallest value in the best\+\_\+\{mode\}.csv file, the smallest value and its corresponding report path is replaced by the current global performance value and its corresponding report path. 
+\begin{DoxyParams}{Parameters}
+{\em float} & global\+\_\+performance\+: Global performance value \\
+\hline
+{\em string} & mode\+: used mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceexecute_a127f67db07549ff14f94851ad43fb941}\label{namespaceexecute_a127f67db07549ff14f94851ad43fb941}} 
+\index{execute@{execute}!init\_execute@{init\_execute}}
+\index{init\_execute@{init\_execute}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{init\_execute()}{init\_execute()}}
+{\footnotesize\ttfamily def execute.\+init\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{node,  }\item[{}]{args,  }\item[{}]{live = {\ttfamily True},  }\item[{}]{m1 = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Initialization of the execute method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & node the node id \\
+\hline
+{\em Namespace} & args the args\+Parser object from the main \\
+\hline
+{\em boolean} & live the parameter that define if the pretrain phase is activated or not, True by default \\
+\hline
+{\em Model} & m1 the model used for the execute method, None by default \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+linker \mbox{\hyperlink{namespace_linker}{Linker}} object (\mbox{\hyperlink{namespace_dataset_linker}{Dataset\+Linker}} of Ns3\+Gym\+Linker depending on the live parameter) 
+
+store\+\_\+data Arms info 
+
+m1 the model used for the execute method, (untrained if live == False, trained but cleared from all the old context if live == True and untrained if live == True but pretrain\+\_\+mode == False) 
+
+dict\+\_\+conf\+\_\+matrix Dictionnary for all the values relative to the Confusion Matrix 
+
+dict\+\_\+graph\+\_\+list Dictionnary for all the values used to generate all the graphs 
+
+dict\+\_\+process\+\_\+value Dictionnary for all the values used to process one round of the training in the run method 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceexecute_a6f92a48a9322174cf203555702690929}\label{namespaceexecute_a6f92a48a9322174cf203555702690929}} 
+\index{execute@{execute}!removeReport@{removeReport}}
+\index{removeReport@{removeReport}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{removeReport()}{removeReport()}}
+{\footnotesize\ttfamily def execute.\+remove\+Report (\begin{DoxyParamCaption}\item[{}]{name,  }\item[{}]{mode }\end{DoxyParamCaption})}
+
+
+
+Method which remove the reports that aren\textquotesingle{}t on the best.\+csv nor the best\+\_\+\{mode\}.csv file. 
+
+NOT WORKING 
+\begin{DoxyParams}{Parameters}
+{\em name} & name of the report \\
+\hline
+{\em node} & used mode ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceexecute_a129b87951d61343b40428315a32ab2be}\label{namespaceexecute_a129b87951d61343b40428315a32ab2be}} 
+\index{execute@{execute}!retrieve\_training\_values@{retrieve\_training\_values}}
+\index{retrieve\_training\_values@{retrieve\_training\_values}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{retrieve\_training\_values()}{retrieve\_training\_values()}}
+{\footnotesize\ttfamily def execute.\+retrieve\+\_\+training\+\_\+values (\begin{DoxyParamCaption}\item[{}]{dict\+\_\+graph\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Method which retrieve the final accuracy, recall using the label and recall using the evaluation value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dict} & dict\+\_\+graph\+\_\+list\+: Dictionnary for all the values used to generate all the graphs \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+v\+\_\+acc last accuracy value 
+
+v\+\_\+rcl\+\_\+label last recall using the label value 
+
+v\+\_\+rcl\+\_\+eval last recall using the evaluation value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceexecute_afa3159d059466c48082b73f427ea344f}\label{namespaceexecute_afa3159d059466c48082b73f427ea344f}} 
+\index{execute@{execute}!run@{run}}
+\index{run@{run}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily def execute.\+run (\begin{DoxyParamCaption}\item[{}]{m,  }\item[{}]{algo,  }\item[{}]{store\+\_\+data,  }\item[{}]{dict\+\_\+process\+\_\+value,  }\item[{}]{dict\+\_\+graph\+\_\+list,  }\item[{}]{dict\+\_\+conf\+\_\+matrix,  }\item[{}]{TP\+\_\+bool,  }\item[{}]{live,  }\item[{}]{linker }\end{DoxyParamCaption})}
+
+
+
+Method which run one round of the training algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Model} & m\+: the model used \\
+\hline
+{\em Algorithm} & algo\+: the algorithm used \\
+\hline
+{\em list} & store\+\_\+data\+: data relative to the arms (nb\+\_\+arms, arms and d\+\_\+arms) \\
+\hline
+{\em dict\+\_\+conf\+\_\+matrix} & Dictionnary for all the values relative to the Confusion Matrix \\
+\hline
+{\em dict\+\_\+graph\+\_\+list} & Dictionnary for all the values used to generate all the graphs \\
+\hline
+{\em dict\+\_\+process\+\_\+value} & Dictionnary for all the values used to process one round of the training in the run method \\
+\hline
+{\em boolean} & TP\+\_\+bool\+: label of the current context (attacked or not) \\
+\hline
+{\em boolean} & live\+: the parameter that define if the pretrain phase is activated or not \\
+\hline
+{\em \mbox{\hyperlink{namespace_linker}{Linker}}} & linker\+: \mbox{\hyperlink{namespace_linker}{Linker}} object (\mbox{\hyperlink{namespace_dataset_linker}{Dataset\+Linker}} or Ns3\+Gym\+Linker depending on the live parameter) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+dict\+\_\+conf\+\_\+matrix Dictionnary for all the values relative to the Confusion Matrix 
+
+dict\+\_\+graph\+\_\+list Dictionnary for all the values used to generate all the graphs 
+
+dict\+\_\+process\+\_\+value Dictionnary for all the values used to process one round of the training in the run method 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespaceexecute_a426a0c84f1c49f4b4266bc20295e86d3}\label{namespaceexecute_a426a0c84f1c49f4b4266bc20295e86d3}} 
+\index{execute@{execute}!save\_images@{save\_images}}
+\index{save\_images@{save\_images}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{save\_images()}{save\_images()}}
+{\footnotesize\ttfamily def execute.\+save\+\_\+images (\begin{DoxyParamCaption}\item[{}]{dict\+\_\+graph\+\_\+list,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Method which save all the needed graph for the PDF Report. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dict} & dict\+\_\+graph\+\_\+list\+: Dictionnary for all the values used to generate all the graphs \\
+\hline
+{\em int} & node\+: node id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceexecute_a9d79a08b6f313a0a2c86b4f67d356ec3}\label{namespaceexecute_a9d79a08b6f313a0a2c86b4f67d356ec3}} 
+\index{execute@{execute}!save\_node\_data@{save\_node\_data}}
+\index{save\_node\_data@{save\_node\_data}!execute@{execute}}
+\doxysubsubsection{\texorpdfstring{save\_node\_data()}{save\_node\_data()}}
+{\footnotesize\ttfamily def execute.\+save\+\_\+node\+\_\+data (\begin{DoxyParamCaption}\item[{}]{dict\+\_\+graph\+\_\+list,  }\item[{}]{node }\end{DoxyParamCaption})}
+
+
+
+Method which save the dict\+\_\+graph\+\_\+list dictionnary in a csv format. 
+
+Method which save the dict\+\_\+graph\+\_\+list dictionnary in a csv format. This method need to rename all the columns to match the existing data format 
+\begin{DoxyParams}{Parameters}
+{\em int} & node\+: the node id \\
+\hline
+{\em dict} & dict\+\_\+graph\+\_\+list\+: Dictionnary for all the values used to generate all the graphs \\
+\hline
+\end{DoxyParams}

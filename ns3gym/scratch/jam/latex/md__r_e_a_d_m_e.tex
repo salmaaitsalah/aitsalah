@@ -1,0 +1,64 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Build the container \+:}\label{md__r_e_a_d_m_e_autotoc_md1}
+To run an experiment, you need to build the docker container. ~\newline
+ Place you in this directory \+: {\ttfamily RL4\+Jam/ns3gym} and use this command \+: {\ttfamily docker-\/compose up -\/-\/build}. ~\newline
+ Then, launch it in iteractive mode \+: {\ttfamily docker run -\/-\/it ns3-\/gym /bin/bash} ~\newline
+
+
+The next instructions are inside the container \hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{Simulate one experiment \+:}\label{md__r_e_a_d_m_e_autotoc_md2}
+To simulate one experiment, open two interactive instances of the ns3-\/gym container \+: one for Ns3\+Gym and one for the experiment. ~\newline
+
+\begin{DoxyItemize}
+\item Launch Ns3\+Gym \+: ~\newline
+ Place you in this directory \+: {\ttfamily /ns3gym/} and use this command \+: {\ttfamily ./waf -\/-\/run jam} ~\newline
+ The Ns3\+Gym simulation need 8 connections by default, so 8 nodes have to be generated during the experiment
+\item Launch the experiment \+: ~\newline
+ Place you in this directory \+: {\ttfamily /ns3gym/scratch/jam/} and use this command \+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{usage: main.py [-\/h] name\_algo nb\_node epsilon C L mode title\_report pretrain\_mode}
+\DoxyCodeLine{positional arguments:}
+\DoxyCodeLine{  name\_algo      The name of the algorithm used}
+\DoxyCodeLine{  nb\_node        number of node used}
+\DoxyCodeLine{  epsilon        error value used in the evaluation}
+\DoxyCodeLine{  C              number of round used in the computation of certain QOS Mode}
+\DoxyCodeLine{  L              delay between the QoS computation and the used value (in round)}
+\DoxyCodeLine{  mode           QoS Computation mode}
+\DoxyCodeLine{  title\_report   title of the outputed report}
+\DoxyCodeLine{  pretrain\_mode  using the pretraining mode  }
+
+\end{DoxyCode}
+ For example \+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\# List of the available Qos Computation mode :}
+\DoxyCodeLine{-\/ QOS  }
+\DoxyCodeLine{-\/ QOSNormalisationSub}
+\DoxyCodeLine{-\/ QOSNormalisationDiv}
+\DoxyCodeLine{-\/ QOSAvg}
+\DoxyCodeLine{-\/ QOSExtremumAvg}
+\DoxyCodeLine{-\/ QOSMedian  }
+\DoxyCodeLine{-\/ QOSAvgMedianSub}
+\DoxyCodeLine{-\/ QOSAvgMedianDiv}
+\DoxyCodeLine{-\/ QOSAvgExtremumSub}
+\DoxyCodeLine{-\/ QOSAvgExtremumDiv}
+\DoxyCodeLine{}
+\DoxyCodeLine{At the end of the experiment, a PDF Report is generated and can be found here : ```ns3gym/scratch/jam/report/}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Run multiple experiments \+:}\label{md__r_e_a_d_m_e_autotoc_md3}
+To run multiple experiments consecutively, you only need to run one interactive instance of the ns3-\/gym container. ~\newline
+ Open the file {\ttfamily ns3gym/scratch/jam/run.\+Py} and add item to the {\ttfamily mode\+Dict} dictionnary (l.\+8) using this template \+: ~\newline
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{'Mode':\{'Epsilon':[Min,Max,Step],'C':[Min,Max,Step],\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{For example : an item defined like ``` 'QOSAvgMedianDiv':\{'Epsilon':[0.03,0.091,0.03],'C':[5,21,5], 'L':[5,50,15]\} ``` means that the program launch an experiment using the linucb algorithm and the QOSAvgMedianDiv computation mode for every epsilon value between 0.03 and 0.091 with a step of 0.03 , for every C value between 5 and 21 with a step of 5 and for every L value between 5 and 50 with a step of 15. The pretrain phase is activated by default. }
+\DoxyCodeLine{}
+\DoxyCodeLine{Then , place you in this directory : ```ns3gym/scratch/jam/``` and use this command : ```python run.Py}
+
+\end{DoxyCode}
+
+
+At the end of the process, you can check the best results (global and for each mode) in the csv files available in this directory \+: {\ttfamily ns3gym/scratch/jam/best\+\_\+report/}. ~\newline
+ You can find the report corresponding to the best experiments by reading the {\ttfamily best.\+csv} file and find the report in this directory \+: {\ttfamily ns3gym/scratch/jam/report} 

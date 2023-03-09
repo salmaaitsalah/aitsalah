@@ -1,0 +1,132 @@
+\hypertarget{main_8py}{}\doxysection{main.\+py File Reference}
+\label{main_8py}\index{main.py@{main.py}}
+
+
+Main script to run the algorithm.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{main_8py_a827678d882685136b1ad3cfced5a5e89}{main.\+init\+\_\+parser}} ()
+\begin{DoxyCompactList}\small\item\em The function that parses the arguments we need. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{main_8py_ab1f0d09f54474ec53e2f94e85702a955}{main.\+args}} = init\+\_\+parser()
+\begin{DoxyCompactList}\small\item\em Executed code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8py_ab4bc5a2ecf62170057b19672fdb0d550}\label{main_8py_ab4bc5a2ecf62170057b19672fdb0d550}} 
+{\bfseries main.\+q} = mp.\+Queue()
+\item 
+\mbox{\Hypertarget{main_8py_a547b88941eac725b406e8515c7c9fbcc}\label{main_8py_a547b88941eac725b406e8515c7c9fbcc}} 
+list {\bfseries main.\+list\+\_\+process} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\Hypertarget{main_8py_aa2b710f3c69c29c72466877e5a306d74}\label{main_8py_aa2b710f3c69c29c72466877e5a306d74}} 
+int {\bfseries main.\+nb\+\_\+node} = 1
+\item 
+\mbox{\Hypertarget{main_8py_ad9e99c474fe77c0bcf594f4e38ab5dd0}\label{main_8py_ad9e99c474fe77c0bcf594f4e38ab5dd0}} 
+{\bfseries main.\+model\+\_\+used} = None
+\item 
+\mbox{\Hypertarget{main_8py_ace2e6092fedab20c8f61ff7e81911eb0}\label{main_8py_ace2e6092fedab20c8f61ff7e81911eb0}} 
+int {\bfseries main.\+best\+\_\+perf} = 0
+\item 
+\mbox{\Hypertarget{main_8py_aaa05404ea589a7e2f640a53e05a052a1}\label{main_8py_aaa05404ea589a7e2f640a53e05a052a1}} 
+{\bfseries main.\+generator\+Var} = PDFGenerator\+Var(args)
+\item 
+\mbox{\Hypertarget{main_8py_a7c28f384de9834ee191b17e716c6c36a}\label{main_8py_a7c28f384de9834ee191b17e716c6c36a}} 
+{\bfseries main.\+nb} = int(args.\+nb\+\_\+node)
+\item 
+\mbox{\Hypertarget{main_8py_adbf2e7d7142e318b3d4752086871bc47}\label{main_8py_adbf2e7d7142e318b3d4752086871bc47}} 
+def {\bfseries main.\+pretrain} = args.\+pretrain\+\_\+mode
+\item 
+\mbox{\Hypertarget{main_8py_afc4d105b9d93922f78bdd2205434b586}\label{main_8py_afc4d105b9d93922f78bdd2205434b586}} 
+string {\bfseries main.\+sub\+\_\+folder} = \char`\"{}node\{\}\char`\"{}.format(i)
+\item 
+\mbox{\Hypertarget{main_8py_a58d6f2b2adcf676c2b3841e399cfdb08}\label{main_8py_a58d6f2b2adcf676c2b3841e399cfdb08}} 
+{\bfseries main.\+p} = Process(target=execute, args=\mbox{[}i, args, q, False\mbox{]})
+\item 
+\mbox{\Hypertarget{main_8py_a9ec0889575bee31b0dcff600417a37e6}\label{main_8py_a9ec0889575bee31b0dcff600417a37e6}} 
+{\bfseries main.\+node\+\_\+id}
+\item 
+\mbox{\Hypertarget{main_8py_ab3349edc5bf5149822ced4642a744384}\label{main_8py_ab3349edc5bf5149822ced4642a744384}} 
+{\bfseries main.\+model}
+\item 
+\mbox{\Hypertarget{main_8py_ad27db62d0958e20ba44a942aef561110}\label{main_8py_ad27db62d0958e20ba44a942aef561110}} 
+{\bfseries main.\+performance}
+\item 
+\mbox{\Hypertarget{main_8py_adda0bef0c5f610ffcc8392437981f576}\label{main_8py_adda0bef0c5f610ffcc8392437981f576}} 
+{\bfseries main.\+timeout}
+\item 
+\mbox{\Hypertarget{main_8py_a1c58403a282d4e35f5b7a9f10a9e1c64}\label{main_8py_a1c58403a282d4e35f5b7a9f10a9e1c64}} 
+{\bfseries main.\+acc}
+\item 
+\mbox{\Hypertarget{main_8py_a023c05af4a7bc8d400a012e1d99cb255}\label{main_8py_a023c05af4a7bc8d400a012e1d99cb255}} 
+{\bfseries main.\+rcl}
+\item 
+\mbox{\Hypertarget{main_8py_a37bcaf25b73a3b3d5ab752f8a9006836}\label{main_8py_a37bcaf25b73a3b3d5ab752f8a9006836}} 
+{\bfseries main.\+rcl\+\_\+eval}
+\item 
+\mbox{\Hypertarget{main_8py_a7c0234d8efcd7d8b88cd70302223ecdb}\label{main_8py_a7c0234d8efcd7d8b88cd70302223ecdb}} 
+{\bfseries main.\+spe}
+\item 
+\mbox{\Hypertarget{main_8py_acff88ec40348a1be46b518a15a29eb45}\label{main_8py_acff88ec40348a1be46b518a15a29eb45}} 
+{\bfseries main.\+pre}
+\item 
+\mbox{\Hypertarget{main_8py_a0050011af6823d676086f48999272a15}\label{main_8py_a0050011af6823d676086f48999272a15}} 
+{\bfseries main.\+perf}
+\item 
+\mbox{\Hypertarget{main_8py_a8ffb3801dee254fd58ea92ff7278ac33}\label{main_8py_a8ffb3801dee254fd58ea92ff7278ac33}} 
+{\bfseries main.\+dict\+\_\+value} = dict()
+\item 
+\mbox{\Hypertarget{main_8py_a4e6bd1b4928958168183ee80adcedb1c}\label{main_8py_a4e6bd1b4928958168183ee80adcedb1c}} 
+{\bfseries main.\+now} = datetime.\+now()
+\item 
+\mbox{\Hypertarget{main_8py_a42b611c17435786ae6bcd336295d08f5}\label{main_8py_a42b611c17435786ae6bcd336295d08f5}} 
+{\bfseries main.\+dt\+\_\+string} = now.\+strftime(\char`\"{}\%d\%m\%Y\%H\%M\%S\char`\"{})
+\item 
+\mbox{\Hypertarget{main_8py_a9cc6716be5c59ba724f7c08bb08229d2}\label{main_8py_a9cc6716be5c59ba724f7c08bb08229d2}} 
+string {\bfseries main.\+name} = f\char`\"{}\+Report\+\_\+\{args.\+mode\}\+\_\+\{dt\+\_\+string\}\char`\"{}
+\item 
+\mbox{\Hypertarget{main_8py_ae6a45184b58c69a5c8c0558da2b26fdd}\label{main_8py_ae6a45184b58c69a5c8c0558da2b26fdd}} 
+{\bfseries main.\+global\+\_\+performance} = sum(\mbox{[}float(x) for x in generator\+Var.\+list\+\_\+perf\mbox{]})/len(generator\+Var.\+list\+\_\+perf)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main script to run the algorithm. 
+
+This file contains the main code and the arguments parser function. \begin{DoxyAuthor}{Author}
+Romain Durieux and Nathan Trouillet (2022) 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8py_a827678d882685136b1ad3cfced5a5e89}\label{main_8py_a827678d882685136b1ad3cfced5a5e89}} 
+\index{main.py@{main.py}!init\_parser@{init\_parser}}
+\index{init\_parser@{init\_parser}!main.py@{main.py}}
+\doxysubsubsection{\texorpdfstring{init\_parser()}{init\_parser()}}
+{\footnotesize\ttfamily def main.\+init\+\_\+parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function that parses the arguments we need. 
+
+This function init and parses the arguments we need. If there are not enough arguments, a helper option will print the correct syntax for the script. The types must also be respected otherwise the help option for the parameters will be printed.
+
+\begin{DoxyReturn}{Returns}
+The number of arms, the arms object, the arms id. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8py_ab1f0d09f54474ec53e2f94e85702a955}\label{main_8py_ab1f0d09f54474ec53e2f94e85702a955}} 
+\index{main.py@{main.py}!args@{args}}
+\index{args@{args}!main.py@{main.py}}
+\doxysubsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily def main.\+args = init\+\_\+parser()}
+
+
+
+Executed code. 
+
+\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# 

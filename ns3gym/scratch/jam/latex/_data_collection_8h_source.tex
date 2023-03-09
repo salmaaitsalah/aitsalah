@@ -1,0 +1,606 @@
+\hypertarget{_data_collection_8h_source}{}\doxysection{Data\+Collection.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* -\/*-\/ Mode:C++; c-\/file-\/style:"{}gnu"{}; indent-\/tabs-\/mode:nil; -\/*-\/ */}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef DATACOLLECTION\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define DATACOLLECTION\_H}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}ns3/command-\/line.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}ns3/node.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}ns3/packet.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}ns3/simulator.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}ns3/node-\/container.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}ns3/net-\/device-\/container.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}ns3/jammer-\/wifi-\/helper.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}ns3/jammer-\/helper.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}ns3/mobility-\/helper.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}ns3/seq-\/ts-\/header.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}ns3/llc-\/snap-\/header.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}ns3/wave-\/net-\/device.h"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}ns3/wave-\/mac-\/helper.h"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}ns3/wave-\/helper.h"{}}}
+\DoxyCodeLine{19 \textcolor{comment}{//\#include "{}ns3/jammer-\/helper.h"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}ns3/ns2-\/mobility-\/helper.h"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}ns3/constant-\/velocity-\/mobility-\/model.h"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}ns3/datacollection-\/module-\/utility.h"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}neighborlist.h"{}}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}mygym.h"{}}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{comment}{// NS\_LOG\_COMPONENT\_DEFINE ("{}DataCollection"{});}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{keyword}{using namespace }ns3;}
+\DoxyCodeLine{33 \textcolor{comment}{//Scenario using ns2 tcl traces from PhDThesis:}}
+\DoxyCodeLine{34 \textcolor{comment}{/*}}
+\DoxyCodeLine{35 \textcolor{comment}{std::string traceFile="{}/home/aviSHOP/Programes/ns-\/allinone-\/3.19/ns-\/3.19/maps/highway\_1cluster\_highdensity\_2jammers.tcl"{};}}
+\DoxyCodeLine{36 \textcolor{comment}{//std::string traceFile="{}/home/huongnguyenm/Programe/ns-\/allinone-\/3.19/ns-\/3.19/maps/highway\_platoon\_highdensity.mobility.tcl"{};}}
+\DoxyCodeLine{37 \textcolor{comment}{Ns2MobilityHelper ns2 = Ns2MobilityHelper (traceFile);}}
+\DoxyCodeLine{38 \textcolor{comment}{ns2.Install ();}}
+\DoxyCodeLine{39 \textcolor{comment}{*/}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{static} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{42 Send (Ptr<WaveNetDevice> netdevice, Mac48Address \&dest, \textcolor{keywordtype}{double} arrivalrate,}
+\DoxyCodeLine{43       Ptr<ExponentialRandomVariable> X1)}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45   Ptr<Packet> packet = Create<Packet> (500);}
+\DoxyCodeLine{46   \textcolor{keyword}{const} \textcolor{keyword}{static} uint16\_t WSMP\_PROT\_NUMBER = 0x88DC;}
+\DoxyCodeLine{47   \textcolor{keyword}{const} TxInfo txInfo = TxInfo (CCH);}
+\DoxyCodeLine{48   uint32\_t deviceid = netdevice-\/>GetNode ()-\/>GetId ();}
+\DoxyCodeLine{49   \textcolor{keyword}{auto} phy = netdevice-\/>GetPhy (0);}
+\DoxyCodeLine{50   Ptr<MobilityModel> mobility = netdevice-\/>GetNode ()-\/>GetObject<MobilityModel> ();}
+\DoxyCodeLine{51   std::cout << \textcolor{stringliteral}{"{}WaveNet Device node "{}} << deviceid << \textcolor{stringliteral}{"{} systime "{}}}
+\DoxyCodeLine{52             << Simulator::Now ().GetMilliSeconds () << \textcolor{stringliteral}{"{} type: s ; psize = "{}} << packet-\/>GetSize ()}
+\DoxyCodeLine{53             << \textcolor{stringliteral}{"{} position "{}} << mobility-\/>GetPosition () << \textcolor{stringliteral}{"{} at channel "{}}}
+\DoxyCodeLine{54             << (uint16\_t) ((DynamicCast<WifiPhy> (phy))-\/>GetChannelNumber ()) << std::endl;}
+\DoxyCodeLine{55   netdevice-\/>SendX (packet, dest, WSMP\_PROT\_NUMBER, txInfo);}
+\DoxyCodeLine{56   \textcolor{comment}{//arrivalrate = duration between two consecutive sent packets in seconds}}
+\DoxyCodeLine{57   Time t = Seconds (X1-\/>GetValue ());}
+\DoxyCodeLine{58   Simulator::Schedule (Seconds (arrivalrate) + t, \&Send, netdevice, dest, arrivalrate, X1);}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 \textcolor{keyword}{class }\mbox{\hyperlink{class_data_collection}{DataCollection}}}
+\DoxyCodeLine{61 \{}
+\DoxyCodeLine{62 \textcolor{keyword}{public}:}
+\DoxyCodeLine{63   \textcolor{comment}{//Setup victims, jammer nodes, applications, channel switching, scenario option: 0 if validation, 1 if platoon, 2 if clusters}}
+\DoxyCodeLine{64   \textcolor{keywordtype}{void} ScenarioSetup (uint32\_t NodeNum, \textcolor{keywordtype}{double} JamProb, std::string mobilitytracefilename);}
+\DoxyCodeLine{65   \textcolor{keywordtype}{void} ScenarioSetup (uint32\_t NodeNum, \textcolor{keywordtype}{double} JamProb, uint8\_t scenariooption);}
+\DoxyCodeLine{66   \textcolor{keywordtype}{void} ScenarioSetup (uint32\_t NodeNum, \textcolor{keywordtype}{double} JamProb, uint8\_t scenariooption,}
+\DoxyCodeLine{67                       std::vector<Ptr<ns3::MyGymEnv>> \&envVector,}
+\DoxyCodeLine{68                       std::vector<Ptr<OpenGymInterface>> \&openGymInterfaceVector);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70   \textcolor{keywordtype}{bool} ReceiveVSA (Ptr<const Packet> pkt, \textcolor{keyword}{const} Address \&address, uint32\_t, uint32\_t);}
+\DoxyCodeLine{71   \textcolor{keywordtype}{bool} Receive (Ptr<NetDevice> nd, Ptr<const Packet> p, uint16\_t protocol, \textcolor{keyword}{const} Address \&addr);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \textcolor{keywordtype}{void} DatatraceSetup (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{74   \textcolor{keywordtype}{void} DatatraceSetup (std::vector<Ptr<ns3::MyGymEnv>> \&envVector);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \textcolor{keywordtype}{void} DatatracePrintOut (std::string experimentname);}
+\DoxyCodeLine{77   \textcolor{keywordtype}{void} SetupMobility (uint8\_t mobilitymode);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   uint16\_t m\_rxpackets = 0;}
+\DoxyCodeLine{80   \textcolor{comment}{// Vector m\_jammerPos; // DONE: Change this to std::list<Vector>}}
+\DoxyCodeLine{81   \textcolor{comment}{// DONE: Add a number of jam node, 1 by default}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   uint32\_t num\_jamNode = 1;}
+\DoxyCodeLine{84   Vector m\_jammerPos;}
+\DoxyCodeLine{85   std::vector<Vector> m\_jammerPosList;}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{keyword}{private}:}
+\DoxyCodeLine{88   \textcolor{keywordtype}{void} CreateWaveNodes (); \textcolor{comment}{// create victims nodes and jammer node: node 0}}
+\DoxyCodeLine{89   \textcolor{keywordtype}{void} CreateWaveNodes (}
+\DoxyCodeLine{90       uint8\_t scenariooption); \textcolor{comment}{// create victims nodes and jammer node: node 0 with scenario option}}
+\DoxyCodeLine{91   \textcolor{keywordtype}{void} PhyMacSetup (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \textcolor{keywordtype}{void} SetupApplication (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{94   \textcolor{keywordtype}{void} SetupApplication (}
+\DoxyCodeLine{95       uint8\_t}
+\DoxyCodeLine{96           scenariooption); \textcolor{comment}{// default application includes only beacons comming periodically in Exponential distribution (Bound= 46ms and mean=1)}}
+\DoxyCodeLine{97   \textcolor{keywordtype}{void} ClusterTopoBuild (}
+\DoxyCodeLine{98       \textcolor{keywordtype}{double} *d, uint32\_t startelement,}
+\DoxyCodeLine{99       uint32\_t}
+\DoxyCodeLine{100           endelement); \textcolor{comment}{// create position of n nodes in a cluster that belong to the array d of all nodes}}
+\DoxyCodeLine{101   Ptr<ListPositionAllocator> PositionSetup (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{102   Ptr<ListPositionAllocator> PositionSetup (uint8\_t scenariooption);}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{keywordtype}{void} SetJamPos (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   NodeContainer m\_nodes;}
+\DoxyCodeLine{107   NetDeviceContainer m\_devices;}
+\DoxyCodeLine{108   uint32\_t m\_nodeNum;}
+\DoxyCodeLine{109   \textcolor{keywordtype}{double} m\_JamProb;}
+\DoxyCodeLine{110   std::string m\_mobilitytracefile;}
+\DoxyCodeLine{111   uint8\_t m\_mobilitymode = 0; \textcolor{comment}{//= 1 if ns2 trace is used, 0 if listPositionAllocator is used}}
+\DoxyCodeLine{112   std::vector<Ptr<DataCollectionModuleUtility>> m\_datatrace;}
+\DoxyCodeLine{113   std::vector<NeighborList> m\_neighbortrace;}
+\DoxyCodeLine{114 \};}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Implementation-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{117 Ptr<ListPositionAllocator>}
+\DoxyCodeLine{118 DataCollection::PositionSetup (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{119 \{}
+\DoxyCodeLine{120   \textcolor{keywordtype}{double} d[m\_nodeNum];}
+\DoxyCodeLine{121   std::ifstream myfile (m\_mobilitytracefile);}
+\DoxyCodeLine{122   uint16\_t count = 0;}
+\DoxyCodeLine{123   std::string str;}
+\DoxyCodeLine{124   std::string::size\_type sz;}
+\DoxyCodeLine{125   \textcolor{keywordflow}{if} (myfile.is\_open ())}
+\DoxyCodeLine{126     \{}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128       \textcolor{keywordflow}{while} (count < m\_nodeNum)}
+\DoxyCodeLine{129         \{}
+\DoxyCodeLine{130           getline (myfile, str);}
+\DoxyCodeLine{131           \textcolor{comment}{//  std::cout << "{}str =  "{} << str << std::endl;}}
+\DoxyCodeLine{132           d[count] = std::stod (str, \&sz);}
+\DoxyCodeLine{133           count = count + 1;}
+\DoxyCodeLine{134         \}}
+\DoxyCodeLine{135       myfile.close ();}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{138     std::cout << \textcolor{stringliteral}{"{}Unable to open file"{}};}
+\DoxyCodeLine{139   Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();}
+\DoxyCodeLine{140   \textcolor{keywordflow}{for} (uint32\_t i = 0; i < m\_nodeNum; i++)}
+\DoxyCodeLine{141     \{}
+\DoxyCodeLine{142       positionAlloc-\/>Add (Vector (d[i], 0.0, 0.0));}
+\DoxyCodeLine{143       \textcolor{comment}{// std::cout << "{}d = "{} << d[i] << std::endl;}}
+\DoxyCodeLine{144     \}}
+\DoxyCodeLine{145   \textcolor{comment}{// m\_jammerPos = Vector (d[0], 0.0, 0.0); // DONE: Set this to be the first element of the list}}
+\DoxyCodeLine{146   m\_jammerPosList.push\_back (Vector (d[0], 0.0, 0.0));}
+\DoxyCodeLine{147   \textcolor{keywordflow}{return} positionAlloc;}
+\DoxyCodeLine{148 \};}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{151 DataCollection::SetupMobility (uint8\_t mobilitymode)}
+\DoxyCodeLine{152 \{}
+\DoxyCodeLine{153   m\_mobilitymode = mobilitymode;}
+\DoxyCodeLine{154 \};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{157 DataCollection::ReceiveVSA (Ptr<const Packet> pkt, \textcolor{keyword}{const} Address \&address, uint32\_t, uint32\_t)}
+\DoxyCodeLine{158 \{}
+\DoxyCodeLine{159   \textcolor{comment}{// std::cout << "{}receive a VSA management frame: recvTime = "{} << Now ().GetSeconds () << "{}s."{} << std::endl;}}
+\DoxyCodeLine{160   m\_rxpackets = m\_rxpackets + 1;}
+\DoxyCodeLine{161   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{162 \};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{165 DataCollection::Receive (Ptr<NetDevice> nd, Ptr<const Packet> p, uint16\_t protocol,}
+\DoxyCodeLine{166                          \textcolor{keyword}{const} Address \&addr)}
+\DoxyCodeLine{167 \{}
+\DoxyCodeLine{168   uint32\_t deviceid = nd-\/>GetNode ()-\/>GetId ();}
+\DoxyCodeLine{169   \textcolor{comment}{// if (deviceid > 0)}}
+\DoxyCodeLine{170   \textcolor{keywordflow}{if} (deviceid >= num\_jamNode)}
+\DoxyCodeLine{171     \{}
+\DoxyCodeLine{172       m\_neighbortrace[deviceid -\/ num\_jamNode].SetMaxQueueTime (Seconds (5.0));}
+\DoxyCodeLine{173       m\_neighbortrace[deviceid -\/ num\_jamNode].UpdateList (addr, Now ());}
+\DoxyCodeLine{174       m\_datatrace[deviceid -\/ num\_jamNode]-\/>UpdateNeighborList (}
+\DoxyCodeLine{175           m\_neighbortrace[deviceid -\/ num\_jamNode].GetSize ());}
+\DoxyCodeLine{176       \textcolor{comment}{// NS\_LOG\_UNCOND ("{}update neighbor list at node "{}}}
+\DoxyCodeLine{177       \textcolor{comment}{//                << deviceid << "{} size = "{} << m\_neighbortrace[deviceid -\/ num\_jamNode].GetSize ()}}
+\DoxyCodeLine{178       \textcolor{comment}{//                << std::endl);}}
+\DoxyCodeLine{179     \}}
+\DoxyCodeLine{180   m\_rxpackets = m\_rxpackets + 1;}
+\DoxyCodeLine{181   Ptr<MobilityModel> mobility = nd-\/>GetNode ()-\/>GetObject<MobilityModel> ();}
+\DoxyCodeLine{182   \textcolor{keyword}{auto} phy = DynamicCast<WaveNetDevice> (nd)-\/>GetPhy (0);}
+\DoxyCodeLine{183   std::cout << \textcolor{stringliteral}{"{}WaveNet Device node "{}} << deviceid << \textcolor{stringliteral}{"{} systime "{}}}
+\DoxyCodeLine{184             << Simulator::Now ().GetMilliSeconds () << \textcolor{stringliteral}{"{} type: r ; psize = "{}} << p-\/>GetSize ()}
+\DoxyCodeLine{185             << \textcolor{stringliteral}{"{} position "{}} << mobility-\/>GetPosition () << \textcolor{stringliteral}{"{} srcid "{}} << addr << \textcolor{stringliteral}{"{} at channel "{}}}
+\DoxyCodeLine{186             << (uint16\_t) ((DynamicCast<WifiPhy> (phy))-\/>GetChannelNumber ()) << std::endl;}
+\DoxyCodeLine{187   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{188 \};}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{191 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{192 DataCollection::PhyMacSetup (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{193 \{}
+\DoxyCodeLine{194   NslWifiChannelHelper channelhelper = NslWifiChannelHelper::Default ();}
+\DoxyCodeLine{195   Ptr<NslWifiChannel> channel = channelhelper.Create ();}
+\DoxyCodeLine{196   QosWaveMacHelper waveMac = QosWaveMacHelper::Default ();}
+\DoxyCodeLine{197   WaveHelper waveHelper = WaveHelper::Default ();}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199   \textcolor{keywordflow}{for} (uint32\_t k = 0; k < m\_nodes.GetN (); k++)}
+\DoxyCodeLine{200     \{}
+\DoxyCodeLine{201       \textcolor{comment}{// if (k == 0) // Setup jammer node 0}}
+\DoxyCodeLine{202       \textcolor{keywordflow}{if} (k < num\_jamNode) \textcolor{comment}{// Setup jammer nodes}}
+\DoxyCodeLine{203         \{}
+\DoxyCodeLine{204           JammerHelper jamhelper;}
+\DoxyCodeLine{205           jamhelper.SetJammerType (\textcolor{stringliteral}{"{}ns3::ReactiveJammer"{}});}
+\DoxyCodeLine{206           jamhelper.Set (\textcolor{stringliteral}{"{}ReactiveJammerFixedProbability"{}}, DoubleValue (m\_JamProb));}
+\DoxyCodeLine{207           jamhelper.Set (\textcolor{stringliteral}{"{}ReactiveJammerRxTxSwitchingDelay"{}}, TimeValue (MicroSeconds (12)));}
+\DoxyCodeLine{208           jamhelper.Set (\textcolor{stringliteral}{"{}ReactiveJammerJammingDuration"{}}, TimeValue (MicroSeconds (500)));}
+\DoxyCodeLine{209           jamhelper.Install (m\_nodes.Get (k));}
+\DoxyCodeLine{210           NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Setup jammer = done "{}} << std::endl);}
+\DoxyCodeLine{211           JammerWifiPhyHelper jamPhy = JammerWifiPhyHelper::Default ();}
+\DoxyCodeLine{212           jamPhy.Set (\textcolor{stringliteral}{"{}TxPowerEnd"{}}, DoubleValue (23));}
+\DoxyCodeLine{213           jamPhy.Set (\textcolor{stringliteral}{"{}TxPowerStart"{}}, DoubleValue (23));}
+\DoxyCodeLine{214           jamPhy.Set (\textcolor{stringliteral}{"{}RxSensitivity"{}}, DoubleValue (-\/90.00));}
+\DoxyCodeLine{215           jamPhy.SetChannel (channel);}
+\DoxyCodeLine{216           waveHelper.Install (jamPhy, waveMac, m\_nodes.Get (k));}
+\DoxyCodeLine{217         \}}
+\DoxyCodeLine{218       \textcolor{keywordflow}{else} \textcolor{comment}{//Setup other node}}
+\DoxyCodeLine{219         \{}
+\DoxyCodeLine{220           YansWavePhyHelper wavePhy = YansWavePhyHelper::Default ();}
+\DoxyCodeLine{221           wavePhy.Set (\textcolor{stringliteral}{"{}TxPowerEnd"{}}, DoubleValue (17.48));}
+\DoxyCodeLine{222           wavePhy.Set (\textcolor{stringliteral}{"{}TxPowerStart"{}}, DoubleValue (17.48));}
+\DoxyCodeLine{223           wavePhy.Set (\textcolor{stringliteral}{"{}RxSensitivity"{}}, DoubleValue (-\/85.00));}
+\DoxyCodeLine{224           wavePhy.SetChannel (channel);}
+\DoxyCodeLine{225           wavePhy.SetPcapDataLinkType (YansWifiPhyHelper::DLT\_IEEE802\_11);}
+\DoxyCodeLine{226           waveHelper.Install (wavePhy, waveMac, m\_nodes.Get (k));}
+\DoxyCodeLine{227         \}}
+\DoxyCodeLine{228       m\_devices.Add (m\_nodes.Get (k)-\/>GetDevice (0));}
+\DoxyCodeLine{229     \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231   \textcolor{comment}{//const SchInfo schInfo = SchInfo (SCH1, true, EXTENDED\_ALTERNATING);}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233   \textcolor{keywordflow}{for} (uint32\_t k = 0; k < m\_devices.GetN (); k++)}
+\DoxyCodeLine{234     \{}
+\DoxyCodeLine{235       \textcolor{comment}{//Set up channel switching alternatively and receive notification}}
+\DoxyCodeLine{236       Ptr<WaveNetDevice> devicei = DynamicCast<WaveNetDevice> (m\_devices.Get (k));}
+\DoxyCodeLine{237       \textcolor{comment}{// devicei-\/>StartSch(schInfo);}}
+\DoxyCodeLine{238       \textcolor{comment}{// if (k > 0) //Receiver}}
+\DoxyCodeLine{239       \textcolor{keywordflow}{if} (k >= num\_jamNode) \textcolor{comment}{//Receiver}}
+\DoxyCodeLine{240         \{}
+\DoxyCodeLine{241           devicei-\/>SetWaveVsaCallback (MakeCallback (\&DataCollection::ReceiveVSA, \textcolor{keyword}{this}));}
+\DoxyCodeLine{242           devicei-\/>SetReceiveCallback (MakeCallback (\&DataCollection::Receive, \textcolor{keyword}{this}));}
+\DoxyCodeLine{243         \}}
+\DoxyCodeLine{244       \textcolor{comment}{//trace phy state}}
+\DoxyCodeLine{245     \}}
+\DoxyCodeLine{246 \};}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{249 DataCollection::CreateWaveNodes ()}
+\DoxyCodeLine{250 \{}
+\DoxyCodeLine{251   m\_nodes.Create (m\_nodeNum);}
+\DoxyCodeLine{252   \textcolor{keywordflow}{if} (m\_mobilitymode == 1)}
+\DoxyCodeLine{253     \{}
+\DoxyCodeLine{254       Ns2MobilityHelper mobility = Ns2MobilityHelper (m\_mobilitytracefile);}
+\DoxyCodeLine{255       mobility.Install ();}
+\DoxyCodeLine{256     \}}
+\DoxyCodeLine{257   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{258     \{}
+\DoxyCodeLine{259       MobilityHelper mobility;}
+\DoxyCodeLine{260       mobility.SetPositionAllocator (PositionSetup ());}
+\DoxyCodeLine{261       mobility.SetMobilityModel (\textcolor{stringliteral}{"{}ns3::ConstantVelocityMobilityModel"{}});}
+\DoxyCodeLine{262       mobility.Install (m\_nodes);}
+\DoxyCodeLine{263     \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265   PhyMacSetup ();}
+\DoxyCodeLine{266   \textcolor{keywordflow}{for} (uint32\_t k = 0; k < m\_nodes.GetN (); k++)}
+\DoxyCodeLine{267     \{}
+\DoxyCodeLine{268       \textcolor{keywordflow}{if} (m\_mobilitymode == 1)}
+\DoxyCodeLine{269         \{}
+\DoxyCodeLine{270           Ptr<ConstantVelocityMobilityModel> model =}
+\DoxyCodeLine{271               m\_nodes.Get (k)-\/>GetObject<ConstantVelocityMobilityModel> ();}
+\DoxyCodeLine{272           \textcolor{comment}{// if (k > 0)}}
+\DoxyCodeLine{273           \textcolor{keywordflow}{if} (k >= num\_jamNode)}
+\DoxyCodeLine{274             \{}
+\DoxyCodeLine{275               model-\/>SetVelocity (Vector (30.0, 0.0, 0.0));}
+\DoxyCodeLine{276             \}}
+\DoxyCodeLine{277         \}}
+\DoxyCodeLine{278     \}}
+\DoxyCodeLine{279 \};}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{282 DataCollection::SetupApplication (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{283 \{}
+\DoxyCodeLine{284   \textcolor{comment}{//Ptr<Packet> wsaPacket = Create<Packet> (500);}}
+\DoxyCodeLine{285   Ptr<ExponentialRandomVariable> X1[m\_nodeNum];}
+\DoxyCodeLine{286   Time t[m\_nodeNum];}
+\DoxyCodeLine{287   \textcolor{keywordtype}{double} arrivalrate = 0.1; \textcolor{comment}{//50 packets/s = 1/arrivalrate}}
+\DoxyCodeLine{288   Mac48Address dest = Mac48Address::GetBroadcast ();}
+\DoxyCodeLine{289   \textcolor{comment}{//const VsaInfo vsaInfo = VsaInfo (dest, OrganizationIdentifier (), 0, wsaPacket, CCH, 100, VSA\_TRANSMIT\_IN\_CCHI);//50 frames/5s = 1 frame/100ms}}
+\DoxyCodeLine{290   \textcolor{keyword}{const} SchInfo schInfo = SchInfo (SCH1, \textcolor{keyword}{true}, EXTENDED\_ALTERNATING);}
+\DoxyCodeLine{291   \textcolor{comment}{// TxProfile txprof(CCH);}}
+\DoxyCodeLine{292   \textcolor{keywordflow}{for} (uint32\_t k = 0; k < m\_devices.GetN (); k++)}
+\DoxyCodeLine{293     \{}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295       Ptr<WaveNetDevice> devicei = DynamicCast<WaveNetDevice> (m\_devices.Get (k));}
+\DoxyCodeLine{296       \textcolor{comment}{// devicei-\/>RegisterTxProfile(txprof);}}
+\DoxyCodeLine{297       Simulator::Schedule (Seconds (0.0), \&WaveNetDevice::StartSch, devicei, schInfo);}
+\DoxyCodeLine{298       Simulator::Schedule (Seconds (150.0), \&WaveNetDevice::StopSch, devicei, SCH1);}
+\DoxyCodeLine{299       \textcolor{keywordflow}{if} (k > 1) \textcolor{comment}{// node 0 is the jammer, Transmitter sends packet}}
+\DoxyCodeLine{300         \textcolor{comment}{// if (k > num\_jamNode) // node 0 is the jammer, Transmitter sends packet}}
+\DoxyCodeLine{301         \{}
+\DoxyCodeLine{302           X1[k] = CreateObject<ExponentialRandomVariable> ();}
+\DoxyCodeLine{303           X1[k]-\/>SetAttribute (\textcolor{stringliteral}{"{}Bound"{}}, DoubleValue (0.046));}
+\DoxyCodeLine{304           t[k] = Seconds (X1[k]-\/>GetValue ());}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306           Simulator::Schedule (t[k], \&Send, devicei, dest, arrivalrate, X1[k]);}
+\DoxyCodeLine{307         \}}
+\DoxyCodeLine{308     \}}
+\DoxyCodeLine{309 \};}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{312 DataCollection::DatatraceSetup (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{313 \{}
+\DoxyCodeLine{314   Ptr<Node> jammer = m\_nodes.Get (0); \textcolor{comment}{//node 0 is alway the jammer}}
+\DoxyCodeLine{315   Ptr<WirelessModuleUtility> Wutility = jammer-\/>GetObject<WirelessModuleUtility> ();}
+\DoxyCodeLine{316   \textcolor{keywordflow}{for} (uint32\_t i = 1; i < m\_devices.GetN (); i++)}
+\DoxyCodeLine{317     \{}
+\DoxyCodeLine{318       Ptr<DataCollectionModuleUtility> utility = CreateObject<DataCollectionModuleUtility> ();}
+\DoxyCodeLine{319       \mbox{\hyperlink{class_neighbor_list}{NeighborList}} nlist;}
+\DoxyCodeLine{320       m\_neighbortrace.push\_back (nlist);}
+\DoxyCodeLine{321       \textcolor{keyword}{auto} phy = DynamicCast<WaveNetDevice> (m\_devices.Get (i))-\/>GetPhy (0);}
+\DoxyCodeLine{322       \textcolor{comment}{//  std::cout<<"{}phy at node"{}<<i<< "{}found"{}<< phy <<"{} state = "{}<< phy-\/>GetState() << std::endl;}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324       utility-\/>InitialDataCollectionUtility (DynamicCast<WaveNetDevice> (m\_devices.Get (i)),}
+\DoxyCodeLine{325                                              Wutility, m\_jammerPos);}
+\DoxyCodeLine{326       \textcolor{comment}{//  std::cout<<"{}Initial DataCollection done"{}<< std::endl;}}
+\DoxyCodeLine{327       m\_datatrace.push\_back (utility);}
+\DoxyCodeLine{328     \}}
+\DoxyCodeLine{329   \textcolor{comment}{// std::cout<< "{}datatrace size = "{}<< m\_datatrace.size()<< "{} m\_devices = "{}<< m\_devices.GetN()<< std::endl;}}
+\DoxyCodeLine{330 \}}
+\DoxyCodeLine{331 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{332 DataCollection::ScenarioSetup (uint32\_t nodeNum, \textcolor{keywordtype}{double} JamProb, std::string mobilitytracefilename)}
+\DoxyCodeLine{333 \{}
+\DoxyCodeLine{334   m\_nodeNum = nodeNum;}
+\DoxyCodeLine{335   m\_JamProb = JamProb;}
+\DoxyCodeLine{336   m\_mobilitytracefile = mobilitytracefilename;}
+\DoxyCodeLine{337   CreateWaveNodes ();}
+\DoxyCodeLine{338   \textcolor{comment}{//  std::cout<< "{}Number of nodes = "{}<< m\_nodeNum<< "{} Number of Devices = "{}<< m\_devices.GetN()<< std::endl;}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340   SetupApplication ();}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342   DatatraceSetup ();}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344   Simulator::Stop (Seconds (150.0));}
+\DoxyCodeLine{345   Simulator::Run ();}
+\DoxyCodeLine{346   Simulator::Destroy ();}
+\DoxyCodeLine{347 \};}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{350 DataCollection::DatatracePrintOut (std::string experimentname)}
+\DoxyCodeLine{351 \{}
+\DoxyCodeLine{352   \textcolor{keywordflow}{for} (uint32\_t i = num\_jamNode; i < m\_devices.GetN (); i++)}
+\DoxyCodeLine{353     \{}
+\DoxyCodeLine{354       std::string tracefile\_state = \textcolor{stringliteral}{"{}./GUSTtracefiles/"{}} + experimentname + \textcolor{stringliteral}{"{}/node\_"{}} +}
+\DoxyCodeLine{355                                     std::to\_string (i) + \textcolor{stringliteral}{"{}\_statetrace.txt"{}}; \textcolor{comment}{//state trace of a node}}
+\DoxyCodeLine{356       std::string tracefile = \textcolor{stringliteral}{"{}./GUSTtracefiles/"{}} + experimentname + \textcolor{stringliteral}{"{}/node\_"{}} + std::to\_string (i) +}
+\DoxyCodeLine{357                               \textcolor{stringliteral}{"{}\_traceall.txt"{}}; \textcolor{comment}{//ls lc le.. trace of a node}}
+\DoxyCodeLine{358       m\_datatrace[i -\/ num\_jamNode]-\/>PrintOutStateObserveeachCW (tracefile\_state);}
+\DoxyCodeLine{359       m\_datatrace[i -\/ num\_jamNode]-\/>PrintOut (tracefile);}
+\DoxyCodeLine{360     \}}
+\DoxyCodeLine{361 \}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/part2-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365 Ptr<ListPositionAllocator>}
+\DoxyCodeLine{366 DataCollection::PositionSetup (uint8\_t scenariooption)}
+\DoxyCodeLine{367 \{}
+\DoxyCodeLine{368   \textcolor{keywordtype}{double} d[m\_nodeNum];}
+\DoxyCodeLine{369   Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();}
+\DoxyCodeLine{370   \textcolor{keywordflow}{if} (scenariooption ==}
+\DoxyCodeLine{371       0) \textcolor{comment}{//validation scenario, all nodes are within transmission range of each other}}
+\DoxyCodeLine{372     \{}
+\DoxyCodeLine{373       d[0] = 251.0;}
+\DoxyCodeLine{374       d[1] = 210; \textcolor{comment}{//150.0;}}
+\DoxyCodeLine{375       d[2] = 220; \textcolor{comment}{//20.0;}}
+\DoxyCodeLine{376       d[3] = 230; \textcolor{comment}{//100.23;}}
+\DoxyCodeLine{377       d[4] = 240; \textcolor{comment}{//126.19;}}
+\DoxyCodeLine{378       d[5] = 260; \textcolor{comment}{//158.86;}}
+\DoxyCodeLine{379       d[6] = 200;}
+\DoxyCodeLine{380       d[7] = 200;}
+\DoxyCodeLine{381       d[8] = 251.78;}
+\DoxyCodeLine{382       d[9] = 251.78;}
+\DoxyCodeLine{383       \textcolor{keywordflow}{for} (uint32\_t i = 0; i < 10; i++)}
+\DoxyCodeLine{384         \{}
+\DoxyCodeLine{385           positionAlloc-\/>Add (Vector (d[i], 0.0, 0.0));}
+\DoxyCodeLine{386           \textcolor{comment}{// std::cout << "{}d = "{} << d[i] << std::endl;}}
+\DoxyCodeLine{387         \}}
+\DoxyCodeLine{388     \}}
+\DoxyCodeLine{389   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (scenariooption == 1) \textcolor{comment}{// platoon scenario}}
+\DoxyCodeLine{390     \textcolor{comment}{// DONE: Set the position of n first jam node}}
+\DoxyCodeLine{391     \{}
+\DoxyCodeLine{392       \textcolor{comment}{// d[0] = 1000.0;}}
+\DoxyCodeLine{393       \textcolor{comment}{// positionAlloc-\/>Add (Vector (d[0], 0.0, 0.0));}}
+\DoxyCodeLine{394       SetJamPos ();}
+\DoxyCodeLine{395       NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Finish setting up jam positions."{}} << std::endl);}
+\DoxyCodeLine{396       \textcolor{keywordflow}{for} (uint32\_t i = 0; i < num\_jamNode; i++)}
+\DoxyCodeLine{397         \{}
+\DoxyCodeLine{398           positionAlloc-\/>Add (m\_jammerPosList[i]);}
+\DoxyCodeLine{399         \}}
+\DoxyCodeLine{400       \textcolor{comment}{// d[1] = 150.0;}}
+\DoxyCodeLine{401       d[num\_jamNode] = 150.0;}
+\DoxyCodeLine{402       \textcolor{keywordflow}{for} (uint32\_t i = num\_jamNode; i < m\_nodeNum; i++)}
+\DoxyCodeLine{403         \{}
+\DoxyCodeLine{404           positionAlloc-\/>Add (Vector (d[i], 1.0, 0.0));}
+\DoxyCodeLine{405           d[i + 1] = d[i] -\/ 5;}
+\DoxyCodeLine{406         \}}
+\DoxyCodeLine{407     \}}
+\DoxyCodeLine{408   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{409     \{}
+\DoxyCodeLine{410       num\_jamNode = 1;}
+\DoxyCodeLine{411       d[0] = 300.0;}
+\DoxyCodeLine{412       positionAlloc-\/>Add (Vector (d[0], 0.0, 0.0));}
+\DoxyCodeLine{413       d[1] = 250.0; \textcolor{comment}{// Cluster1: lane 1}}
+\DoxyCodeLine{414       ClusterTopoBuild (d, 1, 5);}
+\DoxyCodeLine{415       d[6] = d[1]; \textcolor{comment}{//Cluster 1: lane 2}}
+\DoxyCodeLine{416       ClusterTopoBuild (d, 6, 10);}
+\DoxyCodeLine{417       d[11] = d[1] -\/ 200; \textcolor{comment}{//Cluster 2: lane 1}}
+\DoxyCodeLine{418       ClusterTopoBuild (d, 11, 15);}
+\DoxyCodeLine{419       d[16] = d[11]; \textcolor{comment}{// Cluster 2: lane 2}}
+\DoxyCodeLine{420       ClusterTopoBuild (d, 16, 20);}
+\DoxyCodeLine{421       \textcolor{keywordflow}{for} (uint32\_t i = 1; i < m\_nodeNum; i++)}
+\DoxyCodeLine{422         \{}
+\DoxyCodeLine{423           \textcolor{keywordflow}{if} ((i > 0 \&\& i <= 5) || (i > 10 \&\& i <= 15)) \textcolor{comment}{// lane 1}}
+\DoxyCodeLine{424             \{}
+\DoxyCodeLine{425               positionAlloc-\/>Add (Vector (d[i], 1.0, 0.0));}
+\DoxyCodeLine{426             \}}
+\DoxyCodeLine{427           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{428             \{}
+\DoxyCodeLine{429               positionAlloc-\/>Add (Vector (d[i], 1.0, 0.0));}
+\DoxyCodeLine{430             \}}
+\DoxyCodeLine{431         \}}
+\DoxyCodeLine{432       m\_jammerPosList.clear ();}
+\DoxyCodeLine{433       m\_jammerPosList.push\_back (Vector (d[0], 0.0, 0.0)); \textcolor{comment}{// DONE: Change this to a list of vector}}
+\DoxyCodeLine{434     \}}
+\DoxyCodeLine{435 }
+\DoxyCodeLine{436   \textcolor{keywordflow}{return} positionAlloc;}
+\DoxyCodeLine{437 \};}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{440 DataCollection::ClusterTopoBuild (\textcolor{keywordtype}{double} *d, uint32\_t startelement, uint32\_t endelement)}
+\DoxyCodeLine{441 \{}
+\DoxyCodeLine{442   Ptr<ExponentialRandomVariable> D;}
+\DoxyCodeLine{443   D = CreateObject<ExponentialRandomVariable> ();}
+\DoxyCodeLine{444   D-\/>SetAttribute (\textcolor{stringliteral}{"{}Mean"{}}, DoubleValue (5));}
+\DoxyCodeLine{445   \textcolor{keywordflow}{for} (uint32\_t i = startelement; i < endelement; i++)}
+\DoxyCodeLine{446     \{}
+\DoxyCodeLine{447       \textcolor{keywordtype}{double} temp = D-\/>GetValue ();}
+\DoxyCodeLine{448       \textcolor{keywordflow}{if} (temp < 5)}
+\DoxyCodeLine{449         \{}
+\DoxyCodeLine{450           temp = temp + 5;}
+\DoxyCodeLine{451         \}}
+\DoxyCodeLine{452       d[i + 1] = d[i] -\/ temp;}
+\DoxyCodeLine{453     \}}
+\DoxyCodeLine{454 \};}
+\DoxyCodeLine{455 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{456 DataCollection::CreateWaveNodes (uint8\_t scenariooption)}
+\DoxyCodeLine{457 \{}
+\DoxyCodeLine{458   m\_nodes.Create (m\_nodeNum);}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460   MobilityHelper mobility;}
+\DoxyCodeLine{461   mobility.SetPositionAllocator (PositionSetup (scenariooption));}
+\DoxyCodeLine{462   mobility.SetMobilityModel (\textcolor{stringliteral}{"{}ns3::ConstantVelocityMobilityModel"{}});}
+\DoxyCodeLine{463   mobility.Install (m\_nodes);}
+\DoxyCodeLine{464 }
+\DoxyCodeLine{465   PhyMacSetup ();}
+\DoxyCodeLine{466 }
+\DoxyCodeLine{467   Ptr<ExponentialRandomVariable> D;}
+\DoxyCodeLine{468   D = CreateObject<ExponentialRandomVariable> ();}
+\DoxyCodeLine{469   D-\/>SetAttribute (\textcolor{stringliteral}{"{}Mean"{}}, DoubleValue (19));}
+\DoxyCodeLine{470   D-\/>SetAttribute (\textcolor{stringliteral}{"{}Bound"{}}, DoubleValue (22));}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472   \textcolor{keywordflow}{for} (uint32\_t k = 0; k < m\_nodes.GetN (); k++)}
+\DoxyCodeLine{473     \{}
+\DoxyCodeLine{474       Ptr<ConstantVelocityMobilityModel> model =}
+\DoxyCodeLine{475           m\_nodes.Get (k)-\/>GetObject<ConstantVelocityMobilityModel> ();}
+\DoxyCodeLine{476       \textcolor{keywordflow}{if} (scenariooption == 0)}
+\DoxyCodeLine{477         \{}
+\DoxyCodeLine{478           model-\/>SetVelocity (Vector (0.0, 0.0, 0.0));}
+\DoxyCodeLine{479         \}}
+\DoxyCodeLine{480       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (scenariooption == 1)}
+\DoxyCodeLine{481         \{}
+\DoxyCodeLine{482           \textcolor{comment}{// if (k > 0)}}
+\DoxyCodeLine{483           \textcolor{keywordflow}{if} (k >= num\_jamNode)}
+\DoxyCodeLine{484             \{}
+\DoxyCodeLine{485               model-\/>SetVelocity (Vector (30.0, 0.0, 0.0));}
+\DoxyCodeLine{486             \}}
+\DoxyCodeLine{487         \}}
+\DoxyCodeLine{488       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{489         \{}
+\DoxyCodeLine{490           \textcolor{keywordtype}{double} temp = D-\/>GetValue ();}
+\DoxyCodeLine{491           \textcolor{keywordflow}{if} ((k > 0 \&\& k <= 5) || (k > 10 \&\& k <= 15)) \textcolor{comment}{// lane 1}}
+\DoxyCodeLine{492             \{}
+\DoxyCodeLine{493               model-\/>SetVelocity (Vector (temp, 0.0, 0.0));}
+\DoxyCodeLine{494             \}}
+\DoxyCodeLine{495           \textcolor{keywordflow}{else} \textcolor{comment}{// lane 2}}
+\DoxyCodeLine{496             \{}
+\DoxyCodeLine{497               model-\/>SetVelocity (Vector (temp, 0.0, 0.0));}
+\DoxyCodeLine{498             \}}
+\DoxyCodeLine{499         \}}
+\DoxyCodeLine{500     \}}
+\DoxyCodeLine{501 \};}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{504 DataCollection::ScenarioSetup (uint32\_t nodeNum, \textcolor{keywordtype}{double} JamProb, uint8\_t scenariooption)}
+\DoxyCodeLine{505 \{}
+\DoxyCodeLine{506   m\_nodeNum = nodeNum;}
+\DoxyCodeLine{507   m\_JamProb = JamProb;}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509   CreateWaveNodes (scenariooption);}
+\DoxyCodeLine{510   \textcolor{comment}{//  std::cout<< "{}Number of nodes = "{}<< m\_nodeNum<< "{} Number of Devices = "{}<< m\_devices.GetN()<< std::endl;}}
+\DoxyCodeLine{511 }
+\DoxyCodeLine{512   SetupApplication ();}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514   DatatraceSetup ();}
+\DoxyCodeLine{515 }
+\DoxyCodeLine{516   Simulator::Stop (Seconds (150.0));}
+\DoxyCodeLine{517   Simulator::Run ();}
+\DoxyCodeLine{518   Simulator::Destroy ();}
+\DoxyCodeLine{519 \}}
+\DoxyCodeLine{520 }
+\DoxyCodeLine{521 \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Add gym env-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{524 DataCollection::DatatraceSetup (std::vector<Ptr<ns3::MyGymEnv>> \&envVector)}
+\DoxyCodeLine{525 \{}
+\DoxyCodeLine{526   \textcolor{comment}{// DONE: Change this to first n node to be jammer}}
+\DoxyCodeLine{527   std::vector<Ptr<WirelessModuleUtility>> WutilityList;}
+\DoxyCodeLine{528   \textcolor{keywordflow}{for} (uint32\_t i = 0; i < num\_jamNode; i++)}
+\DoxyCodeLine{529     \{}
+\DoxyCodeLine{530       Ptr<Node> jammer = m\_nodes.Get (i);}
+\DoxyCodeLine{531       WutilityList.push\_back (jammer-\/>GetObject<WirelessModuleUtility> ());}
+\DoxyCodeLine{532       NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Wutility: "{}} << WutilityList[i] << \textcolor{stringliteral}{"{}, size: "{}} << \textcolor{keyword}{sizeof} (*WutilityList[i])}
+\DoxyCodeLine{533                                   << std::endl);}
+\DoxyCodeLine{534     \}}
+\DoxyCodeLine{535   \textcolor{comment}{// Ptr<Node> jammer = m\_nodes.Get (0); //node 0 is alway the jammer}}
+\DoxyCodeLine{536   \textcolor{comment}{// Ptr<WirelessModuleUtility> Wutility = jammer-\/>GetObject<WirelessModuleUtility> ();}}
+\DoxyCodeLine{537 }
+\DoxyCodeLine{538   \textcolor{keywordflow}{for} (uint32\_t i = num\_jamNode; i < m\_devices.GetN (); i++)}
+\DoxyCodeLine{539     \{}
+\DoxyCodeLine{540       Ptr<DataCollectionModuleUtility> utility = CreateObject<DataCollectionModuleUtility> ();}
+\DoxyCodeLine{541       \textcolor{comment}{// utility-\/>TraceConnectWithoutContext ("{}Test"{}, MakeCallback (\&ns3::MyGymEnv::TestTrace));}}
+\DoxyCodeLine{542       Ptr<ns3::MyGymEnv> env;}
+\DoxyCodeLine{543       \textcolor{keywordflow}{if} (i <= envVector.size ())}
+\DoxyCodeLine{544         \{}
+\DoxyCodeLine{545           env = envVector[i -\/ 1];}
+\DoxyCodeLine{546           utility-\/>TraceConnectWithoutContext (\textcolor{stringliteral}{"{}LatestDatum"{}},}
+\DoxyCodeLine{547                                                MakeBoundCallback (\&ns3::MyGymEnv::DatumTrace, env));}
+\DoxyCodeLine{548         \}}
+\DoxyCodeLine{549       \mbox{\hyperlink{class_neighbor_list}{NeighborList}} nlist;}
+\DoxyCodeLine{550       m\_neighbortrace.push\_back (nlist);}
+\DoxyCodeLine{551       \textcolor{keyword}{auto} phy = DynamicCast<WaveNetDevice> (m\_devices.Get (i))-\/>GetPhy (0);}
+\DoxyCodeLine{552       \textcolor{comment}{//  std::cout<<"{}phy at node"{}<<i<< "{}found"{}<< phy <<"{} state = "{}<< phy-\/>GetState() << std::endl;}}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{554       utility-\/>InitialDataCollectionUtility (DynamicCast<WaveNetDevice> (m\_devices.Get (i)),}
+\DoxyCodeLine{555                                              WutilityList, m\_jammerPosList);}
+\DoxyCodeLine{556       NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Initial DataCollection done for node "{}} << i << std::endl);}
+\DoxyCodeLine{557       m\_datatrace.push\_back (utility);}
+\DoxyCodeLine{558     \}}
+\DoxyCodeLine{559   \textcolor{comment}{// std::cout<< "{}datatrace size = "{}<< m\_datatrace.size()<< "{} m\_devices = "{}<< m\_devices.GetN()<< std::endl;}}
+\DoxyCodeLine{560 \}}
+\DoxyCodeLine{561 }
+\DoxyCodeLine{562 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{563 DataCollection::ScenarioSetup (uint32\_t nodeNum, \textcolor{keywordtype}{double} JamProb, uint8\_t scenariooption,}
+\DoxyCodeLine{564                                std::vector<Ptr<ns3::MyGymEnv>> \&envVector,}
+\DoxyCodeLine{565                                std::vector<Ptr<OpenGymInterface>> \&openGymInterfaceVector)}
+\DoxyCodeLine{566 \{}
+\DoxyCodeLine{567   m\_nodeNum = nodeNum;}
+\DoxyCodeLine{568   m\_JamProb = JamProb;}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570   CreateWaveNodes (scenariooption);}
+\DoxyCodeLine{571   \textcolor{comment}{//  std::cout<< "{}Number of nodes = "{}<< m\_nodeNum<< "{} Number of Devices = "{}<< m\_devices.GetN()<< std::endl;}}
+\DoxyCodeLine{572 }
+\DoxyCodeLine{573   SetupApplication ();}
+\DoxyCodeLine{574 }
+\DoxyCodeLine{575   DatatraceSetup (envVector);}
+\DoxyCodeLine{576   NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Finish Datatrace Setup"{}} << std::endl);}
+\DoxyCodeLine{577 }
+\DoxyCodeLine{578   Simulator::Stop (Seconds (150.0));}
+\DoxyCodeLine{579   \textcolor{comment}{// Simulator::Stop (Seconds (300.0));}}
+\DoxyCodeLine{580   NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Running simulation for 150s"{}} << std::endl);}
+\DoxyCodeLine{581   Simulator::Run ();}
+\DoxyCodeLine{582   NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Simulation run successfully"{}} << std::endl);}
+\DoxyCodeLine{583 }
+\DoxyCodeLine{584   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \textcolor{keyword}{const} \&i : openGymInterfaceVector)}
+\DoxyCodeLine{585     \{}
+\DoxyCodeLine{586       i-\/>NotifySimulationEnd ();}
+\DoxyCodeLine{587     \}}
+\DoxyCodeLine{588   Simulator::Destroy ();}
+\DoxyCodeLine{589   NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Simulation destroyed"{}} << std::endl);}
+\DoxyCodeLine{590 \};}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{592 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{593 DataCollection::SetJamPos (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{594 \{}
+\DoxyCodeLine{595   m\_jammerPosList.push\_back (Vector (1000, 0.0, 0.0));}
+\DoxyCodeLine{596   m\_jammerPosList.push\_back (Vector (2000, 0.0, 0.0));}
+\DoxyCodeLine{597   \textcolor{comment}{// m\_jammerPosList.push\_back (Vector (3000, 0.0, 0.0));}}
+\DoxyCodeLine{598   num\_jamNode = m\_jammerPosList.size ();}
+\DoxyCodeLine{599   NS\_LOG\_UNCOND (\textcolor{stringliteral}{"{}Setting up simulation with "{}} << num\_jamNode << \textcolor{stringliteral}{"{} jammers."{}} << std::endl);}
+\DoxyCodeLine{600 \}}
+\DoxyCodeLine{601 }
+\DoxyCodeLine{602 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

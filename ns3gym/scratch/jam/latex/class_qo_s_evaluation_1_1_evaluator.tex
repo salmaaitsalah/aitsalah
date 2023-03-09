@@ -1,0 +1,151 @@
+\hypertarget{class_qo_s_evaluation_1_1_evaluator}{}\doxysection{Qo\+SEvaluation.\+Evaluator Class Reference}
+\label{class_qo_s_evaluation_1_1_evaluator}\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+
+
+\mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator}{Evaluator}} Class.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_a9ae03d53df133ae40517770c3fa65700}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, mode, qos\+Histo, c\+Window, l\+Delay)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator}{Evaluator}} constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_a6c3572281eeb23caeec189dd3033f7af}{get\+Qo\+Sat\+TminusL}} (self)
+\begin{DoxyCompactList}\small\item\em The method that gets historical data at t-\/l\+Delay. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_a9f57a20e146c39a78ab5aefe3d0136b0}{a\+Upper\+Equals\+BEpsilon}} (self, a, b, epsilon)
+\begin{DoxyCompactList}\small\item\em Is a greater than or equal to b, taking into account the epsilon fluctuation. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_a7b051a8ecf7db484bd35344a05d5cf38}{get\+Eval}} (self, qos, qost1, epsilon, was\+Attacked)
+\begin{DoxyCompactList}\small\item\em The method that selects the QoS assessment. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_aa4bfca8a8fb40ae135d78ded099440de}{simple\+Eval}} (self, qos, qost1, was\+Attacked, epsilon)
+\begin{DoxyCompactList}\small\item\em The simple jam evaluation. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator_ab77eb47e1521acf45d68a789d09682cd}{evaluate\+QOSat\+Tand\+TL}} (self, qos, qostl, epsilon)
+\begin{DoxyCompactList}\small\item\em The percentage jam evaluation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_ae9baaf27b4b6f645eb2378fed74075e0}\label{class_qo_s_evaluation_1_1_evaluator_ae9baaf27b4b6f645eb2378fed74075e0}} 
+{\bfseries mode}
+\item 
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_abcd01d64e36b6125590abf49332d2690}\label{class_qo_s_evaluation_1_1_evaluator_abcd01d64e36b6125590abf49332d2690}} 
+{\bfseries qos\+Histo}
+\item 
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_aa0055d4a629bee5af9cde3cb26feb948}\label{class_qo_s_evaluation_1_1_evaluator_aa0055d4a629bee5af9cde3cb26feb948}} 
+{\bfseries c\+Window}
+\item 
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_a144e0aee4fdcf7436b346f7511dffc0b}\label{class_qo_s_evaluation_1_1_evaluator_a144e0aee4fdcf7436b346f7511dffc0b}} 
+{\bfseries l\+Delay}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator}{Evaluator}} Class. 
+
+This class is used to evaluate an attack based on the data provided. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_a9ae03d53df133ae40517770c3fa65700}\label{class_qo_s_evaluation_1_1_evaluator_a9ae03d53df133ae40517770c3fa65700}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{mode,  }\item[{}]{qos\+Histo,  }\item[{}]{c\+Window,  }\item[{}]{l\+Delay }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_qo_s_evaluation_1_1_evaluator}{Evaluator}} constructor. 
+
+This constructor needs 4 parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Computation mode to use (cf. \mbox{\hyperlink{_qo_s_computation_8py}{Qo\+SComputation.\+py}}). \\
+\hline
+{\em qos\+Histo} & The QoS historic. \\
+\hline
+{\em c\+Window} & The calculation window (eg. \+: for an average sum(data)/C). \\
+\hline
+{\em l\+Delay} & The delay between the first and the second calculated value. The second value will be calculated at t-\/L. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_a9f57a20e146c39a78ab5aefe3d0136b0}\label{class_qo_s_evaluation_1_1_evaluator_a9f57a20e146c39a78ab5aefe3d0136b0}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!aUpperEqualsBEpsilon@{aUpperEqualsBEpsilon}}
+\index{aUpperEqualsBEpsilon@{aUpperEqualsBEpsilon}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{aUpperEqualsBEpsilon()}{aUpperEqualsBEpsilon()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+a\+Upper\+Equals\+BEpsilon (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+Is a greater than or equal to b, taking into account the epsilon fluctuation. 
+
+Is a greater than or equal to b, taking into account the epsilon fluctuation.
+
+\begin{DoxyReturn}{Returns}
+A boolean value. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_ab77eb47e1521acf45d68a789d09682cd}\label{class_qo_s_evaluation_1_1_evaluator_ab77eb47e1521acf45d68a789d09682cd}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!evaluateQOSatTandTL@{evaluateQOSatTandTL}}
+\index{evaluateQOSatTandTL@{evaluateQOSatTandTL}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{evaluateQOSatTandTL()}{evaluateQOSatTandTL()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+evaluate\+QOSat\+Tand\+TL (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{qos,  }\item[{}]{qostl,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+The percentage jam evaluation. 
+
+This method makes a percentage according to the QoS at t and t+1. If this percentage is less than 100\%, it means that we are under a jam attack.
+
+\begin{DoxyReturn}{Returns}
+A boolean representing if we are attacked. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_a7b051a8ecf7db484bd35344a05d5cf38}\label{class_qo_s_evaluation_1_1_evaluator_a7b051a8ecf7db484bd35344a05d5cf38}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!getEval@{getEval}}
+\index{getEval@{getEval}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{getEval()}{getEval()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+get\+Eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{qos,  }\item[{}]{qost1,  }\item[{}]{epsilon,  }\item[{}]{was\+Attacked }\end{DoxyParamCaption})}
+
+
+
+The method that selects the QoS assessment. 
+
+This method selects the QoS assessment based on the parameters.
+
+\begin{DoxyReturn}{Returns}
+A boolean representing if we are attacked. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_a6c3572281eeb23caeec189dd3033f7af}\label{class_qo_s_evaluation_1_1_evaluator_a6c3572281eeb23caeec189dd3033f7af}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!getQoSatTminusL@{getQoSatTminusL}}
+\index{getQoSatTminusL@{getQoSatTminusL}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{getQoSatTminusL()}{getQoSatTminusL()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+get\+Qo\+Sat\+TminusL (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that gets historical data at t-\/l\+Delay. 
+
+The methode that get the historical data at t-\/l\+Delay.
+
+\begin{DoxyReturn}{Returns}
+The historical data at t-\/l\+Delay. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_qo_s_evaluation_1_1_evaluator_aa4bfca8a8fb40ae135d78ded099440de}\label{class_qo_s_evaluation_1_1_evaluator_aa4bfca8a8fb40ae135d78ded099440de}} 
+\index{QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}!simpleEval@{simpleEval}}
+\index{simpleEval@{simpleEval}!QoSEvaluation.Evaluator@{QoSEvaluation.Evaluator}}
+\doxysubsubsection{\texorpdfstring{simpleEval()}{simpleEval()}}
+{\footnotesize\ttfamily def Qo\+SEvaluation.\+Evaluator.\+simple\+Eval (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{qos,  }\item[{}]{qost1,  }\item[{}]{was\+Attacked,  }\item[{}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+The simple jam evaluation. 
+
+This method is simple QoS assessment. If the QoS at t+1 is worse than the QoS at t, it means we are under attack.
+
+\begin{DoxyReturn}{Returns}
+A boolean representing if we are attacked. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linker/\mbox{\hyperlink{_qo_s_evaluation_8py}{Qo\+SEvaluation.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,185 @@
+\hypertarget{class_dataset_linker_1_1_dataset_linker}{}\doxysection{Dataset\+Linker.\+Dataset\+Linker Class Reference}
+\label{class_dataset_linker_1_1_dataset_linker}\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+
+
+\mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker}{Dataset\+Linker}} Class.  
+
+
+Inheritance diagram for Dataset\+Linker.\+Dataset\+Linker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_dataset_linker_1_1_dataset_linker}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_afda315b60e7d02789b120aa2d757638d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, node\+Id, C, L, mode=\char`\"{}QOS\char`\"{}, eval\+Type=\char`\"{}Std\char`\"{})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker}{Dataset\+Linker}} constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_a17b354c18e07761449319fe1e08d1c34}{next}} (self)
+\begin{DoxyCompactList}\small\item\em The method that refreshes the data and feeds the histories. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_acde2b6d61e492029b06f2805b3000a88}{read\+File}} (self, file)
+\begin{DoxyCompactList}\small\item\em The method that reads a file. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_a507b4cbfcb54725bc537322aaad8c2f9}{read\+Data\+File}} (self)
+\begin{DoxyCompactList}\small\item\em The method that reads context values ​​from the dead dataset. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_a817832d4fd12ad9271763526e0322813}{read\+Label\+File}} (self)
+\begin{DoxyCompactList}\small\item\em The method that reads the jam attack prediction. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_a52b586d95975899e0dc5268263cb6a70}{get\+Dataset\+Len}} (self)
+\begin{DoxyCompactList}\small\item\em The method that returns the length of the dataset. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_aac6d1c15c12dd374da894cc36270dc62}{get\+Data\+From\+Dataset}} (self, index)
+\begin{DoxyCompactList}\small\item\em The method that formats the context data. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker_a6988d9ca5f1568c131625bb6e9963877}{get\+Label\+From\+Dataset}} (self, index)
+\begin{DoxyCompactList}\small\item\em The method that formats the label data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a1cf48016e96ea585602013f9c338a60b}\label{class_dataset_linker_1_1_dataset_linker_a1cf48016e96ea585602013f9c338a60b}} 
+{\bfseries dataset}
+\item 
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a5ac77ed8deddcffa8cf01b550030d1a4}\label{class_dataset_linker_1_1_dataset_linker_a5ac77ed8deddcffa8cf01b550030d1a4}} 
+{\bfseries label}
+\item 
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a1105b27b2c1c022c3bf5f562a4e16391}\label{class_dataset_linker_1_1_dataset_linker_a1105b27b2c1c022c3bf5f562a4e16391}} 
+{\bfseries obs}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker}{Dataset\+Linker}} Class. 
+
+This class is used to retrieve context data back to the agent using the dead dataset. This class extends the \mbox{\hyperlink{namespace_linker}{Linker}} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_afda315b60e7d02789b120aa2d757638d}\label{class_dataset_linker_1_1_dataset_linker_afda315b60e7d02789b120aa2d757638d}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node\+Id,  }\item[{}]{C,  }\item[{}]{L,  }\item[{}]{mode = {\ttfamily \char`\"{}QOS\char`\"{}},  }\item[{}]{eval\+Type = {\ttfamily \char`\"{}Std\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_dataset_linker_1_1_dataset_linker}{Dataset\+Linker}} constructor. 
+
+This constructor needs at least 3 parameters and maximum 5 parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Id} & The N-\/th Process created. \\
+\hline
+{\em C} & The calculation window (eg. \+: for an average sum(data)/C). \\
+\hline
+{\em L} & The delay between the first and the second calculated value. The second value will be calculated at t-\/L. \\
+\hline
+{\em mode} & Computation mode to use (cf. \mbox{\hyperlink{_qo_s_computation_8py}{Qo\+SComputation.\+py}}). Default = \char`\"{}\+QOS\char`\"{}. \\
+\hline
+{\em eval\+Type} & Evaluation mode to use (cf. \mbox{\hyperlink{_qo_s_evaluation_8py}{Qo\+SEvaluation.\+py}}). Default = \char`\"{}\+Std\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_aac6d1c15c12dd374da894cc36270dc62}\label{class_dataset_linker_1_1_dataset_linker_aac6d1c15c12dd374da894cc36270dc62}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!getDataFromDataset@{getDataFromDataset}}
+\index{getDataFromDataset@{getDataFromDataset}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{getDataFromDataset()}{getDataFromDataset()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+get\+Data\+From\+Dataset (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+
+
+The method that formats the context data. 
+
+The method that returns a formatted version of the context data.
+
+\begin{DoxyReturn}{Returns}
+Formatted contextual data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a52b586d95975899e0dc5268263cb6a70}\label{class_dataset_linker_1_1_dataset_linker_a52b586d95975899e0dc5268263cb6a70}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!getDatasetLen@{getDatasetLen}}
+\index{getDatasetLen@{getDatasetLen}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{getDatasetLen()}{getDatasetLen()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+get\+Dataset\+Len (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that returns the length of the dataset. 
+
+The method that returns the length of the dataset.
+
+\begin{DoxyReturn}{Returns}
+The length of the dataset. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a6988d9ca5f1568c131625bb6e9963877}\label{class_dataset_linker_1_1_dataset_linker_a6988d9ca5f1568c131625bb6e9963877}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!getLabelFromDataset@{getLabelFromDataset}}
+\index{getLabelFromDataset@{getLabelFromDataset}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{getLabelFromDataset()}{getLabelFromDataset()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+get\+Label\+From\+Dataset (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{index }\end{DoxyParamCaption})}
+
+
+
+The method that formats the label data. 
+
+The method that returns a formatted version of the labem data.
+
+\begin{DoxyReturn}{Returns}
+The formatted label data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a17b354c18e07761449319fe1e08d1c34}\label{class_dataset_linker_1_1_dataset_linker_a17b354c18e07761449319fe1e08d1c34}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!next@{next}}
+\index{next@{next}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+next (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that refreshes the data and feeds the histories. 
+
+The method that refreshes data and populates histories with context data from the dead dataset. \mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a507b4cbfcb54725bc537322aaad8c2f9}\label{class_dataset_linker_1_1_dataset_linker_a507b4cbfcb54725bc537322aaad8c2f9}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!readDataFile@{readDataFile}}
+\index{readDataFile@{readDataFile}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{readDataFile()}{readDataFile()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+read\+Data\+File (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that reads context values ​​from the dead dataset. 
+
+The method that reads context values ​​from the dead dataset.
+
+\begin{DoxyReturn}{Returns}
+The data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_acde2b6d61e492029b06f2805b3000a88}\label{class_dataset_linker_1_1_dataset_linker_acde2b6d61e492029b06f2805b3000a88}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!readFile@{readFile}}
+\index{readFile@{readFile}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+read\+File (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{file }\end{DoxyParamCaption})}
+
+
+
+The method that reads a file. 
+
+The method that reads a file to get the dead dataset\textquotesingle{}s context values.
+
+\begin{DoxyReturn}{Returns}
+All lines of the file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dataset_linker_1_1_dataset_linker_a817832d4fd12ad9271763526e0322813}\label{class_dataset_linker_1_1_dataset_linker_a817832d4fd12ad9271763526e0322813}} 
+\index{DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}!readLabelFile@{readLabelFile}}
+\index{readLabelFile@{readLabelFile}!DatasetLinker.DatasetLinker@{DatasetLinker.DatasetLinker}}
+\doxysubsubsection{\texorpdfstring{readLabelFile()}{readLabelFile()}}
+{\footnotesize\ttfamily def Dataset\+Linker.\+Dataset\+Linker.\+read\+Label\+File (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that reads the jam attack prediction. 
+
+The method that reads the values ​​from the labels.
+
+\begin{DoxyReturn}{Returns}
+The label data. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linker/\mbox{\hyperlink{_dataset_linker_8py}{Dataset\+Linker.\+py}}\end{DoxyCompactItemize}

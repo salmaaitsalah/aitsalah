@@ -1,0 +1,86 @@
+\hypertarget{class_ns3gym_linker_1_1_ns3gym_linker}{}\doxysection{Ns3gym\+Linker.\+Ns3gym\+Linker Class Reference}
+\label{class_ns3gym_linker_1_1_ns3gym_linker}\index{Ns3gymLinker.Ns3gymLinker@{Ns3gymLinker.Ns3gymLinker}}
+
+
+\mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker}{Ns3gym\+Linker}} Class.  
+
+
+Inheritance diagram for Ns3gym\+Linker.\+Ns3gym\+Linker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ns3gym_linker_1_1_ns3gym_linker}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker_ad70576e7c975484e1fadf8baf618fd1c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, node\+Id, C, L, mode=\char`\"{}QOS\char`\"{}, eval\+Type=\char`\"{}Std\char`\"{})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker}{Ns3gym\+Linker}} constructor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker_adf3513962c02f021170b8539cbd40d33}{next}} (self)
+\begin{DoxyCompactList}\small\item\em The method that refreshes the data and feeds the histories. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_a7047924ceb51c39bcc7241917055c7a8}\label{class_ns3gym_linker_1_1_ns3gym_linker_a7047924ceb51c39bcc7241917055c7a8}} 
+{\bfseries port}
+\item 
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_a427dad0a4e50e05d31fc2e56188df330}\label{class_ns3gym_linker_1_1_ns3gym_linker_a427dad0a4e50e05d31fc2e56188df330}} 
+{\bfseries env}
+\item 
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_a779e44a195543f09beedede0bfa6e00a}\label{class_ns3gym_linker_1_1_ns3gym_linker_a779e44a195543f09beedede0bfa6e00a}} 
+{\bfseries ob\+\_\+space}
+\item 
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_a4c121a07ab3be069c6e7e678a90c64c7}\label{class_ns3gym_linker_1_1_ns3gym_linker_a4c121a07ab3be069c6e7e678a90c64c7}} 
+{\bfseries ac\+\_\+space}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker}{Ns3gym\+Linker}} Class. 
+
+This class is used to retrieve context data to the agent using ns3gym. This class extends the \mbox{\hyperlink{namespace_linker}{Linker}} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_ad70576e7c975484e1fadf8baf618fd1c}\label{class_ns3gym_linker_1_1_ns3gym_linker_ad70576e7c975484e1fadf8baf618fd1c}} 
+\index{Ns3gymLinker.Ns3gymLinker@{Ns3gymLinker.Ns3gymLinker}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!Ns3gymLinker.Ns3gymLinker@{Ns3gymLinker.Ns3gymLinker}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Ns3gym\+Linker.\+Ns3gym\+Linker.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{node\+Id,  }\item[{}]{C,  }\item[{}]{L,  }\item[{}]{mode = {\ttfamily \char`\"{}QOS\char`\"{}},  }\item[{}]{eval\+Type = {\ttfamily \char`\"{}Std\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_ns3gym_linker_1_1_ns3gym_linker}{Ns3gym\+Linker}} constructor. 
+
+This constructor needs at least 3 parameters and maximum 5 parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node\+Id} & The N-\/th Process created. \\
+\hline
+{\em C} & The calculation window (eg. \+: for an average sum(data)/C). \\
+\hline
+{\em L} & The delay between the first and the second calculated value. The second value will be calculated at t-\/L. \\
+\hline
+{\em mode} & Computation mode to use (cf. \mbox{\hyperlink{_qo_s_computation_8py}{Qo\+SComputation.\+py}}). Default = \char`\"{}\+QOS\char`\"{}. \\
+\hline
+{\em eval\+Type} & Evaluation mode to use (cf. \mbox{\hyperlink{_qo_s_evaluation_8py}{Qo\+SEvaluation.\+py}}). Default = \char`\"{}\+Std\char`\"{}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ns3gym_linker_1_1_ns3gym_linker_adf3513962c02f021170b8539cbd40d33}\label{class_ns3gym_linker_1_1_ns3gym_linker_adf3513962c02f021170b8539cbd40d33}} 
+\index{Ns3gymLinker.Ns3gymLinker@{Ns3gymLinker.Ns3gymLinker}!next@{next}}
+\index{next@{next}!Ns3gymLinker.Ns3gymLinker@{Ns3gymLinker.Ns3gymLinker}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily def Ns3gym\+Linker.\+Ns3gym\+Linker.\+next (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The method that refreshes the data and feeds the histories. 
+
+The method that refreshes data and populates histories with context data from ns3gym. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+linker/\mbox{\hyperlink{_ns3gym_linker_8py}{Ns3gym\+Linker.\+py}}\end{DoxyCompactItemize}

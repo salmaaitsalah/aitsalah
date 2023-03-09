@@ -1,0 +1,80 @@
+\hypertarget{neighborlist_8h_source}{}\doxysection{neighborlist.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef MY\_NEIGHBORLIST\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define MY\_NEIGHBORLIST\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}ns3/command-\/line.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}ns3/nstime.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}ns3/simulator.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}ns3/net-\/device-\/container.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}ns3/wave-\/net-\/device.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{using namespace }ns3;}
+\DoxyCodeLine{11 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_neighbor}{Neighbor}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13   Address nodeid;}
+\DoxyCodeLine{14   Time rxtime;}
+\DoxyCodeLine{15 \} \mbox{\hyperlink{struct_neighbor}{neighbor}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keywordtype}{bool} QueueingTimeExceed (\mbox{\hyperlink{struct_neighbor}{neighbor}} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_neighbor_list}{NeighborList}}}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} RefreshList (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{23   \textcolor{keywordtype}{void} UpdateList (\textcolor{keyword}{const} Address \&\textcolor{keywordtype}{id}, Time rx);}
+\DoxyCodeLine{24   \textcolor{keywordtype}{void} SetMaxQueueTime (Time duetime);}
+\DoxyCodeLine{25   uint32\_t GetSize (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   std::list<neighbor> m\_list;}
+\DoxyCodeLine{28   Time m\_maxQueueTime = Seconds (10.0);}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{32 QueueingTimeExceed (\mbox{\hyperlink{struct_neighbor}{neighbor}} \&node)}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34   \textcolor{comment}{// std::cout<< "{}QueuingTimeEcceed rxtime ="{}<< node.rxtime <<"{} time Now "{}<< Simulator::Now() << "{} return "{}<< (Simulator::Now() -\/ (node.rxtime) > Seconds(0))<<std::endl;}}
+\DoxyCodeLine{35   \textcolor{keywordflow}{return} (Simulator::Now () -\/ (node.rxtime) > Seconds (0));}
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{39 NeighborList::RefreshList (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   m\_list.remove\_if (QueueingTimeExceed);}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{46 NeighborList::UpdateList (\textcolor{keyword}{const} Address \&\textcolor{keywordtype}{id}, Time rx)}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48   \textcolor{comment}{// std::cout<< "{}rx packet from node "{}<< id << "{} at "{}<< rx << std::endl;}}
+\DoxyCodeLine{49   RefreshList ();}
+\DoxyCodeLine{50   \mbox{\hyperlink{struct_neighbor}{neighbor}} node = \{id, rx + m\_maxQueueTime\};}
+\DoxyCodeLine{51   \textcolor{keywordflow}{for} (std::list<neighbor>::const\_iterator i = m\_list.begin (); i != m\_list.end (); i++)}
+\DoxyCodeLine{52     \{}
+\DoxyCodeLine{53       \textcolor{keywordflow}{if} (i-\/>nodeid == \textcolor{keywordtype}{id})}
+\DoxyCodeLine{54         \{}
+\DoxyCodeLine{55           m\_list.erase (i);}
+\DoxyCodeLine{56           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{57         \}}
+\DoxyCodeLine{58     \}}
+\DoxyCodeLine{59   \textcolor{comment}{// std::cout<< "{}Neighbor list size at node = "{}<< m\_list.size()<< std::endl;}}
+\DoxyCodeLine{60   m\_list.push\_back (node);}
+\DoxyCodeLine{61   \textcolor{comment}{//  std::cout<< "{}Neighbor list size at node = "{}<< m\_list.size()<< std::endl;}}
+\DoxyCodeLine{62 \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{65 NeighborList::SetMaxQueueTime (Time duetime)}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67   m\_maxQueueTime = duetime;}
+\DoxyCodeLine{68 \};}
+\DoxyCodeLine{69 uint32\_t}
+\DoxyCodeLine{70 NeighborList::GetSize (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72   \textcolor{keywordflow}{return} m\_list.size ();}
+\DoxyCodeLine{73 \};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// MY\_NEIGHBORLIST\_H}}
+
+\end{DoxyCode}

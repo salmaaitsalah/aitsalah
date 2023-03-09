@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  ns3-gym:
+    container_name: ns3-gym
+    build: .
+    volumes:
+      - ./scratch:/usr/ns3-gym/scratch
+      - ./GUSTtracefiles:/usr/ns3-gym/GUSTtracefiles
+      - ./src/jamming/model/:/usr/ns3-gym/src/jamming/model/ 
+    restart: always
